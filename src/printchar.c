@@ -66,7 +66,8 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
             if ((x < vinfo.xres)&&(y < vinfo.yres)) {
                 location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
-            setColor(R,G,B,alpha);
+                setColor(R,G,B,alpha);
+            }
         }
     }
         
