@@ -61,8 +61,8 @@ int finishPrinter(){
 
 void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
     int x,y;
-    for (y = _y; y < size; y++) {
-        for (x = _x; x < size; x++) {
+    for (y = _y; y < _y+size; y++) {
+        for (x = _x; x < _x+size; x++) {
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
 
