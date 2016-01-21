@@ -56,12 +56,12 @@ int initializePrinter(){
 
 int finishPrinter(){
     munmap(fbp, screensize);
-	close(fbfd);
+    close(fbfd);
 }
 
 void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
-	charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
+    charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
     long int location = 0;
 
     int i = 0, x = X, k, l;
@@ -99,12 +99,12 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
 }
 
 void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-	static const int size = 1;
-	static const int onecharspace = charpixmatrix_width+2;
-	int i;
-	for (i=0;i<alen; i++){
-		printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
-	}
+    static const int size = 3;
+    static const int onecharspace = charpixmatrix_width+5;
+    int i;
+    for (i=0;i<alen; i++){
+        printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
+    }
 }
 
 void hapusScreen(){
