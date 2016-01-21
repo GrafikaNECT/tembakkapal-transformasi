@@ -12,8 +12,8 @@ int main(){
 
 	
 	hapusScreen();
-	
-	for (i=600;i>0;i--){
+
+	for (i=1366;i>0;i--){
 		printText("GRAPHICAT!!!",12,150,i,i%200,i%150,i%255,255);
 		printText("Asanilta Fahda",14,150,i-50,i%200,i%150,i%255,255);
 		printText("Tifani Warnita",14,150,i-100,i%200,i%150,i%255,255);
