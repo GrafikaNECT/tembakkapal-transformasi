@@ -17,6 +17,14 @@
     char *fbp = 0;
     long int location = 0;
 
+int getXRes(){
+	return vinfo.xres;
+}
+
+int getYRes(){
+	return vinfo.yres;
+}
+
 int initializePrinter(){
 
     // Open the file for reading and writing

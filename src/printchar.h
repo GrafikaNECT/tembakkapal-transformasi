@@ -15,4 +15,7 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
+int getXRes();
+int getYRes();
+
 #endif
