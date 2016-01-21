@@ -13,6 +13,7 @@ int main(){
 	
 	hapusScreen();
 	drawCharpixSquare(50, 50, 100, 0, 0, 255, 0);
+	drawCharpixSquare(90, 90, 100, 0, 0, 255, 0);
 
 	for (i=400;i>0;i--){
 		printText("GRAPHICAT!!!",12,150,i,i%200,i%150,i%255,255);

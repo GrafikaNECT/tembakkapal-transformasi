@@ -63,12 +63,13 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
     int x,y;
     for (y = _y; y < _y+size; y++) {
         for (x = _x; x < _x+size; x++) {
-            location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+            if ((x < vinfo.xres)&&(y < vinfo.yres)) {
+                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
 
-            setColor(R,G,B,alpha);
+                setColor(R,G,B,alpha);    
+            }
             
-
         }
     }
         
@@ -106,18 +107,7 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
                 
                 for (k = 0; k < size; ++k) {
                     if (pixelmatrix.tab[j][i]) {
-                        if (vinfo.bits_per_pixel == 32) {
-                            *(fbp + location) = B;        // Some blue
-                            *(fbp + location + 1) = G;     // A little green
-                            *(fbp + location + 2) = R;    // A lot of red
-                            *(fbp + location + 3) = alpha;      // No transparency
-                        } else  { //assume 16bpp
-                            int b = B/8;
-                            int g = G/8;     // A little green
-                            int r = R/8;    // A lot of red
-                            unsigned short int t = r<<11 | g << 5 | b;
-                            *((unsigned short int*)(fbp + location)) = t;
-                        }
+                        drawCharpixSquare(50, 150, 100, 0, 0, 255, 0);
                     }
                     location = location + (1+vinfo.xoffset) * (vinfo.bits_per_pixel/8);
                 }
@@ -128,6 +118,7 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
             x++;
     }
 }
+
 
 void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
     static const int size = 3;
