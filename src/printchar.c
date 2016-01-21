@@ -118,16 +118,25 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     }
 }
 
+int calculateOneCharSpace(int size){
+	return (charpixmatrix_width+5)*size;
+}
 
 void printText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-    int onecharspace = (charpixmatrix_width+5)*size;
+    int onecharspace = calculateOneCharSpace(size);
     int i;
     for (i=0;i<alen; i++){
         printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
     }
 }
 
-void hapusScreen(){
+void printTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+    int onecharspace = calculateOneCharSpace(size);
+    int X = (getXRes()-alen*onecharspace)/2;
+    printText(a, alen, X, Y, size, R, G, B, alpha);
+}
+
+void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
     int x = 0, y = 0;       // Where we are going to put the pixel
 
     // Figure out where in memory to put the pixel
@@ -137,18 +146,7 @@ void hapusScreen(){
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                        (y+vinfo.yoffset) * finfo.line_length;
 
-            if (vinfo.bits_per_pixel == 32) {
-                *(fbp + location) = 255;        // Some blue
-                *(fbp + location + 1) = 255;     // A little green
-                *(fbp + location + 2) = 255;    // A lot of red
-                *(fbp + location + 3) = 255;      // No transparency
-            } else  { //assume 16bpp
-                int b = 0;
-                int g = 0;     // A little green
-                int r = 0;    // A lot of red
-                unsigned short int t = r<<11 | g << 5 | b;
-                *((unsigned short int*)(fbp + location)) = t;
-            }
+		setColor(R, G, B, alpha);
 
         }
 }
