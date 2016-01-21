@@ -73,8 +73,8 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
             
             location = (x*size+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                        (y*size+vinfo.yoffset) * finfo.line_length;
-            for (k = 0; k <= size; ++k) {
-                location = location + k;
+            //for (k = 0; k <= size; ++k) {
+                //location = location + k;
                 if (pixelmatrix.tab[j][i]) {
                     if (vinfo.bits_per_pixel == 32) {
                         *(fbp + location) = B;        // Some blue
@@ -88,21 +88,8 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
                         unsigned short int t = r<<11 | g << 5 | b;
                         *((unsigned short int*)(fbp + location)) = t;
                     }
-                } /* else {
-                    if (vinfo.bits_per_pixel == 32) {
-                        *(fbp + location) = 0;        // Some blue
-                        *(fbp + location + 1) = 0;     //  green
-                        *(fbp + location + 2) = 0;    //  red
-                        *(fbp + location + 3) = 255;      // alpha
-                    } else  { //assume 16bpp
-                        int b = B/8;
-                        int g = G/8;     // A little green
-                        int r = R/8;    // A lot of red
-                        unsigned short int t = r<<11 | g << 5 | b;
-                        *((unsigned short int*)(fbp + location)) = t;
-                    }
-                }*/
-            }
+                } 
+            //}
             j++;
             y++;
         }
