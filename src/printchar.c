@@ -65,10 +65,7 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
         for (x = _x; x < _x+size; x++) {
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
-
             setColor(R,G,B,alpha);
-            
-
         }
     }
         
@@ -93,7 +90,6 @@ void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char a
 void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
     charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
-    long int location = 0;
 
     int i = 0, x = X, k, l;
 
@@ -101,12 +97,11 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     while (i < charpixmatrix_width) {        
         int j = 0, y = Y;
             while (j < charpixmatrix_height) {
-                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                           (y+vinfo.yoffset) * finfo.line_length;
                 
                 for (k = 0; k < size; ++k) {
                     if (pixelmatrix.tab[j][i]) {
-                        if (vinfo.bits_per_pixel == 32) {
+                        drawCharpixSquare(x, y, size, R, G, B, alpha);
+                        /* if (vinfo.bits_per_pixel == 32) {
                             *(fbp + location) = B;        // Some blue
                             *(fbp + location + 1) = G;     // A little green
                             *(fbp + location + 2) = R;    // A lot of red
@@ -117,21 +112,21 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
                             int r = R/8;    // A lot of red
                             unsigned short int t = r<<11 | g << 5 | b;
                             *((unsigned short int*)(fbp + location)) = t;
-                        }
+                        } */
                     }
                     location = location + (1+vinfo.xoffset) * (vinfo.bits_per_pixel/8);
                 }
                 j++;
-                y++;
+                y+=size;
             }
             i++;
-            x++;
+            x+=size;
     }
 }
 
 void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-    static const int size = 3;
-    static const int onecharspace = charpixmatrix_width+5;
+    int size = 2;
+    int onecharspace = (charpixmatrix_width+5)*size;
     int i;
     for (i=0;i<alen; i++){
         printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
