@@ -9,7 +9,10 @@ int main(){
 	// hapusScreen();
 	//hapusScreen();
 	initializePrinter();
+
+	
 	hapusScreen();
+	
 	for (i=400;i>0;i--){
 		printText("GRAPHICAT!!!",12,150,i,i%200,i%150,i%255,255);
 		printText("Asanilta Fahda",12,150,i-25,i%200,i%150,i%255,255);
@@ -24,6 +27,7 @@ int main(){
 		printText("M Nizami",8,150,i-100,200,150,255,255);
 		//hapusScreen();
 	}
+
 	//for (i=0;i<10;i++){
 		//for (j=0;j<10;j++){
 			//printChar('I',i*charpixmatrix_width+space,j*charpixmatrix_height+space,3,255,255,255,0);

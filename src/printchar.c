@@ -59,6 +59,37 @@ int finishPrinter(){
     close(fbfd);
 }
 
+void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
+    int x,y;
+    for (y = _y; y < size; y++) {
+        for (x = _x; x < size; x++) {
+            location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                           (y+vinfo.yoffset) * finfo.line_length;
+
+            setColor(R,G,B,alpha);
+            
+
+        }
+    }
+        
+}
+
+void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
+    if (vinfo.bits_per_pixel == 32) {
+        *(fbp + location) = B;        // Some blue
+        *(fbp + location + 1) = G;     //  green
+        *(fbp + location + 2) = R;    //  red
+        *(fbp + location + 3) = alpha;      // alpha
+
+    } else  { //assume 16bpp
+        int b = B/8;
+        int g = G/8;     // A little green
+        int r = R/8;    // A lot of red
+        unsigned short int t = r<<11 | g << 5 | b;
+        *((unsigned short int*)(fbp + location)) = t;
+    }
+}
+
 void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
     charpixmatrix_type pixelmatrix = getcharpixmatrix(a);

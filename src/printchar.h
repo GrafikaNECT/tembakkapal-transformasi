@@ -11,4 +11,8 @@ void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G
 
 void hapusScreen();
 
+void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+
+void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+
 #endif
