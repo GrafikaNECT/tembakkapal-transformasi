@@ -150,3 +150,54 @@ void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char
 
         }
 }
+
+void drawPicture(int _x, int _y, int size, int max_X) {
+    int R0 = 0; int G0 = 0; int B0 = 0;
+    int R1 = 0; int G1 = 10; int B1 = 30;
+    int R2 = 30; int G2 = 30; int B2 = 30;
+    int R3 = 50; int G3 = 40; int B3 = 10;
+    int R4 = 50; int G4 = 60; int B4 = 40;
+    int R5 = 40; int G5 = 0; int B5 = 10;
+    int R,G,B;
+    int i;
+
+    char const* const fileName = "binarytest.txt";
+    FILE* file = fopen(fileName, "r"); /* should check the result */
+    char line[max_X+1];
+
+    while (fgets(line, sizeof(line), file)) {
+        char* tmp = line;
+        for (i = 0; i < strlen(tmp); i++) {
+            switch(tmp[i]){
+                case '0':
+                    R = R0; G = G0; B = B0;
+                    printf("0");
+                    break;
+                case '1':
+                    R = R1; G = G1; B = B1;
+                    printf("1");
+                    break;
+                case '2':
+                    R = R2; G = G2; B = B2;
+                    printf("2");
+                    break;
+                case '3':
+                    R = R3; G = G3; B = B3;
+                    printf("3");
+                    break;
+                case '4':
+                    R = R4; G = G4; B = B4;
+                    printf("4");
+                    break;
+                case '5':
+                    R = R5; G = G5; B = B5;
+                    printf("5");
+                    break;
+                
+            }
+            printf("/n");
+        }
+    }
+    
+    fclose(file);
+}

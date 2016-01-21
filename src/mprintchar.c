@@ -21,6 +21,9 @@ int main(){
 	int i;
 	// hapusScreen();
 	//hapusScreen();
+
+	drawPicture(1,1,1,8);
+	
 	initializePrinter();
 	drawBeveledText("GRAPHICAT!!!",12,100,getYRes()/2-60,10,255,0,0,255,20,
 				0,255,255,255);
