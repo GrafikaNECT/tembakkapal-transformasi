@@ -10,7 +10,7 @@ int main(){
 	hapusScreen();
 	for (i=0;i<10;i++){
 		for (j=0;j<10;j++){
-			printChar('I',i*charpixmatrix_width+space,j*charpixmatrix_height+space,1,255,255,255,0);
+			printChar('I',i*charpixmatrix_width+space,j*charpixmatrix_height+space,3,255,255,255,0);
 			
 		}
 	}

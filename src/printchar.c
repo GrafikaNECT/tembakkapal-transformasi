@@ -42,24 +42,13 @@ int initializePrinter(){
     printf("%dx%d, %dbpp\n", vinfo.xres, vinfo.yres, vinfo.bits_per_pixel);
 
     // Figure out the size of the screen in bytes
-    screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
-
-    // Map the device to memory
-    fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
-    if ((int)fbp == -1) {
-        perror("Error: failed to map framebuffer device to memory");
-        return 4;
-    }
-    printf("The framebuffer device was mapped to memory successfully.\n");
-
-    // Figure out the size of the screen in bytes
     screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel;
 
     // Map the device to memory
     fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
     if ((int)fbp == -1) {
         perror("Error: failed to map framebuffer device to memory");
-        exit(4);
+        return 4;
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
 }
@@ -83,7 +72,8 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
             
             location = (x*size+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                        (y*size+vinfo.yoffset) * finfo.line_length;
-            for (k = 0; k < size; ++k) {
+            for (k = 0; k <= size; ++k) {
+                location = location + k;
                 if (pixelmatrix.tab[j][i]) {
                     if (vinfo.bits_per_pixel == 32) {
                         *(fbp + location) = B;        // Some blue
@@ -111,7 +101,6 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
                         *((unsigned short int*)(fbp + location)) = t;
                     }
                 }*/
-                location++;
             }
             j++;
             y++;
