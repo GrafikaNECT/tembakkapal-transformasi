@@ -152,6 +152,7 @@ void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char
 }
 
 void drawPicture(int _x, int _y, int size, int max_X) {
+    int alpha = 0;
     int R0 = 0; int G0 = 0; int B0 = 0;
     int R1 = 0; int G1 = 10; int B1 = 30;
     int R2 = 30; int G2 = 30; int B2 = 30;
@@ -160,43 +161,48 @@ void drawPicture(int _x, int _y, int size, int max_X) {
     int R5 = 40; int G5 = 0; int B5 = 10;
     int R,G,B;
     int i;
+    int x,y;
 
-    char const* const fileName = "binarytest.txt";
+    y = _y;
+
+    char const* const fileName = "cat_pixel.txt";
     FILE* file = fopen(fileName, "r"); /* should check the result */
     char line[max_X+1];
 
     while (fgets(line, sizeof(line), file)) {
         char* tmp = line;
+        x = _x;
         for (i = 0; i < strlen(tmp); i++) {
             switch(tmp[i]){
                 case '0':
                     R = R0; G = G0; B = B0;
-                    printf("0");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 case '1':
                     R = R1; G = G1; B = B1;
-                    printf("1");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 case '2':
                     R = R2; G = G2; B = B2;
-                    printf("2");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 case '3':
                     R = R3; G = G3; B = B3;
-                    printf("3");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 case '4':
                     R = R4; G = G4; B = B4;
-                    printf("4");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 case '5':
                     R = R5; G = G5; B = B5;
-                    printf("5");
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
                     break;
                 
             }
-            printf("/n");
+            x+=size;
         }
+        y+=size;
     }
     
     fclose(file);
