@@ -42,7 +42,7 @@ int initializePrinter(){
     printf("%dx%d, %dbpp\n", vinfo.xres, vinfo.yres, vinfo.bits_per_pixel);
 
     // Figure out the size of the screen in bytes
-    screensize = vinfo.xres_virtual * vinfo.yres_virtual * (vinfo.bits_per_pixel / 8);
+    screensize = finfo.smem_len;
 
     // Map the device to memory
     fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
@@ -64,37 +64,37 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
 	charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
     long int location = 0;
 
-    int i = 0, x = X, k;
+    int i = 0, x = X, k, l;
 
     // Figure out where in memory to put the pixel
     while (i < charpixmatrix_width) {        
         int j = 0, y = Y;
-        while (j < charpixmatrix_height) {
-            
-            location = (x*size+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                       (y*size+vinfo.yoffset) * finfo.line_length;
-            //for (k = 0; k <= size; ++k) {
-                //location = location + k;
-                if (pixelmatrix.tab[j][i]) {
-                    if (vinfo.bits_per_pixel == 32) {
-                        *(fbp + location) = B;        // Some blue
-                        *(fbp + location + 1) = G;     // A little green
-                        *(fbp + location + 2) = R;    // A lot of red
-                        *(fbp + location + 3) = alpha;      // No transparency
-                    } else  { //assume 16bpp
-                        int b = B/8;
-                        int g = G/8;     // A little green
-                        int r = R/8;    // A lot of red
-                        unsigned short int t = r<<11 | g << 5 | b;
-                        *((unsigned short int*)(fbp + location)) = t;
+            while (j < charpixmatrix_height) {
+                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                           (y+vinfo.yoffset) * finfo.line_length;
+                
+                for (k = 0; k < size; ++k) {
+                    if (pixelmatrix.tab[j][i]) {
+                        if (vinfo.bits_per_pixel == 32) {
+                            *(fbp + location) = B;        // Some blue
+                            *(fbp + location + 1) = G;     // A little green
+                            *(fbp + location + 2) = R;    // A lot of red
+                            *(fbp + location + 3) = alpha;      // No transparency
+                        } else  { //assume 16bpp
+                            int b = B/8;
+                            int g = G/8;     // A little green
+                            int r = R/8;    // A lot of red
+                            unsigned short int t = r<<11 | g << 5 | b;
+                            *((unsigned short int*)(fbp + location)) = t;
+                        }
                     }
-                } 
-            //}
-            j++;
-            y++;
-        }
-        i++;
-        x++;
+                    location = location + (1+vinfo.xoffset) * (vinfo.bits_per_pixel/8);
+                }
+                j++;
+                y++;
+            }
+            i++;
+            x++;
     }
 }
 
