@@ -42,7 +42,7 @@ int initializePrinter(){
     printf("%dx%d, %dbpp\n", vinfo.xres, vinfo.yres, vinfo.bits_per_pixel);
 
     // Figure out the size of the screen in bytes
-    screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel/2;
+    screensize = vinfo.xres_virtual * vinfo.yres_virtual * (vinfo.bits_per_pixel / 8);
 
     // Map the device to memory
     fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
@@ -51,6 +51,7 @@ int initializePrinter(){
         return 4;
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
+    printf("%d", vinfo.xres*vinfo.yoffset);
 }
 
 int finishPrinter(){
@@ -121,9 +122,9 @@ void hapusScreen(){
                        (y+vinfo.yoffset) * finfo.line_length;
 
             if (vinfo.bits_per_pixel == 32) {
-                *(fbp + location) = 0;        // Some blue
-                *(fbp + location + 1) = 0;     // A little green
-                *(fbp + location + 2) = 0;    // A lot of red
+                *(fbp + location) = 255;        // Some blue
+                *(fbp + location + 1) = 255;     // A little green
+                *(fbp + location + 2) = 255;    // A lot of red
                 *(fbp + location + 3) = 255;      // No transparency
             } else  { //assume 16bpp
                 int b = 0;
