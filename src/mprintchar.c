@@ -1,16 +1,20 @@
 #include "printchar.h"
 #include "char.h"
+#include <stdlib.h>
 
 int main(){
+	system("setterm -cursor off");
 	int space = 2;
 	int i=0,j=0;
 	// hapusScreen();
 	//hapusScreen();
 	initializePrinter();
+	hapusScreen();
 	for (i=0;i<1000;i++){
-		hapusScreen();
-		printText("IIIIIII",7,100,100+i,0,0,0,255);
-		usleep(10000);
+		printText("IIIIIII",7,100,100+i,i%200,i%150,i%255,255);
+		usleep(5000);
+		printText("IIIIIII",7,100,100+i,255,255,255,255);
+		//hapusScreen();
 	}
 	//for (i=0;i<10;i++){
 		//for (j=0;j<10;j++){
@@ -18,5 +22,6 @@ int main(){
 			
 		//}
 	//}
+	system("setterm -cursor on");
 	finishPrinter();
 }
