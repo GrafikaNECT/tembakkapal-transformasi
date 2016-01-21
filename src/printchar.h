@@ -5,7 +5,7 @@ int initializePrinter();
 
 int finishPrinter();
 
-void printChar(char a, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
 void printText(char* a, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 

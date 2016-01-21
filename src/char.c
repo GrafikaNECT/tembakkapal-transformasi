@@ -50,6 +50,7 @@ charpixmatrix_type getcharpixmatrix(char C){
 		case 'i':
 		case 'I':
 		return letterI;
+		break;
 		default:
 		return blank;
 	}

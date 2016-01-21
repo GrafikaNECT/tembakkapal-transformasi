@@ -15,7 +15,7 @@
     struct fb_fix_screeninfo finfo;
     long int screensize = 0;
     char *fbp = 0;
-    int x = 0, y = 0;
+    long int location = 0;
 
 int initializePrinter(){
 
@@ -52,47 +52,97 @@ int initializePrinter(){
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
 
+    // Figure out the size of the screen in bytes
+    screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel;
+
+    // Map the device to memory
+    fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fbfd, 0);
+    if ((int)fbp == -1) {
+        perror("Error: failed to map framebuffer device to memory");
+        exit(4);
+    }
+    printf("The framebuffer device was mapped to memory successfully.\n");
 }
 
 int finishPrinter(){
+    munmap(fbp, screensize);
 	close(fbfd);
-	return 0;
 }
 
-void printChar(char a, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
 	charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
     long int location = 0;
-// Figure out where in memory to put the pixel
-    for (y = Y; y < charpixmatrix_height; y++)
-        for (x = X; x < charpixmatrix_width; x++) {
-	    if (pixelmatrix.tab[y][x]){
 
-		    location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-		               (y+vinfo.yoffset) * finfo.line_length;
+    int i = 0, x = X, k;
 
-		    if (vinfo.bits_per_pixel == 32) {
-		        *(fbp + location) = B;        // Some blue
-		        *(fbp + location + 1) = G;     //  green
-		        *(fbp + location + 2) = R;    //  red
-		        *(fbp + location + 3) = alpha;      // alpha
-		//location += 4;
-		    } else  { //assume 16bpp
-		        int b = B/8;
-		        int g = G/8;     // A little green
-		        int r = R/8;    // A lot of red
-		        unsigned short int t = r<<11 | g << 5 | b;
-		        *((unsigned short int*)(fbp + location)) = t;
-		    }
-		}
-
+    // Figure out where in memory to put the pixel
+    while (i < charpixmatrix_width) {        
+        int j = 0, y = Y;
+        while (j < charpixmatrix_height) {
+            
+            location = (x*size+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                       (y*size+vinfo.yoffset) * finfo.line_length;
+            for (k = 0; k < size; ++k) {
+                if (pixelmatrix.tab[j][i]) {
+                    if (vinfo.bits_per_pixel == 32) {
+                        *(fbp + location) = B;        // Some blue
+                        *(fbp + location + 1) = G;     // A little green
+                        *(fbp + location + 2) = R;    // A lot of red
+                        *(fbp + location + 3) = alpha;      // No transparency
+                    } else  { //assume 16bpp
+                        int b = B/8;
+                        int g = G/8;     // A little green
+                        int r = R/8;    // A lot of red
+                        unsigned short int t = r<<11 | g << 5 | b;
+                        *((unsigned short int*)(fbp + location)) = t;
+                    }
+                } /* else {
+                    if (vinfo.bits_per_pixel == 32) {
+                        *(fbp + location) = 0;        // Some blue
+                        *(fbp + location + 1) = 0;     //  green
+                        *(fbp + location + 2) = 0;    //  red
+                        *(fbp + location + 3) = 255;      // alpha
+                    } else  { //assume 16bpp
+                        int b = B/8;
+                        int g = G/8;     // A little green
+                        int r = R/8;    // A lot of red
+                        unsigned short int t = r<<11 | g << 5 | b;
+                        *((unsigned short int*)(fbp + location)) = t;
+                    }
+                }*/
+                location++;
+            }
+            j++;
+            y++;
         }
-    munmap(fbp, screensize);
+        i++;
+        x++;
+    }
 }
 
 void hapusScreen(){
-	int i;
-	for (i=0;i<screensize;i++){
-		*(fbp+i)=0;
-	}
+    int x = 0, y = 0;       // Where we are going to put the pixel
+
+    // Figure out where in memory to put the pixel
+    for (y = 0; y < vinfo.yres; y++)
+        for (x = 0; x < vinfo.xres; x++) {
+
+            location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                       (y+vinfo.yoffset) * finfo.line_length;
+
+            if (vinfo.bits_per_pixel == 32) {
+                *(fbp + location) = 0;        // Some blue
+                *(fbp + location + 1) = 0;     // A little green
+                *(fbp + location + 2) = 0;    // A lot of red
+                *(fbp + location + 3) = 255;      // No transparency
+            } else  { //assume 16bpp
+                int b = 0;
+                int g = 0;     // A little green
+                int r = 0;    // A lot of red
+                unsigned short int t = r<<11 | g << 5 | b;
+                *((unsigned short int*)(fbp + location)) = t;
+            }
+
+        }
 }

@@ -8,7 +8,7 @@
 
 typedef struct {
 	bool tab[charpixmatrix_height][charpixmatrix_width];
-}charpixmatrix_type;
+} charpixmatrix_type;
 
 charpixmatrix_type getcharpixmatrix(char a);
 
