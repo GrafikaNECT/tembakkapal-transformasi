@@ -97,24 +97,9 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     while (i < charpixmatrix_width) {        
         int j = 0, y = Y;
             while (j < charpixmatrix_height) {
-                
-                for (k = 0; k < size; ++k) {
-                    if (pixelmatrix.tab[j][i]) {
-                        drawCharpixSquare(x, y, size, R, G, B, alpha);
-                        /* if (vinfo.bits_per_pixel == 32) {
-                            *(fbp + location) = B;        // Some blue
-                            *(fbp + location + 1) = G;     // A little green
-                            *(fbp + location + 2) = R;    // A lot of red
-                            *(fbp + location + 3) = alpha;      // No transparency
-                        } else  { //assume 16bpp
-                            int b = B/8;
-                            int g = G/8;     // A little green
-                            int r = R/8;    // A lot of red
-                            unsigned short int t = r<<11 | g << 5 | b;
-                            *((unsigned short int*)(fbp + location)) = t;
-                        } */
-                    }
-                    location = location + (1+vinfo.xoffset) * (vinfo.bits_per_pixel/8);
+                if (pixelmatrix.tab[j][i]) {
+                    drawCharpixSquare(x, y, size, R, G, B, alpha);
+                    
                 }
                 j++;
                 y+=size;
