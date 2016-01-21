@@ -11,9 +11,9 @@ int main(){
 	initializePrinter();
 	hapusScreen();
 	for (i=0;i<1000;i++){
-		printText("IIIIIII",7,100,100+i,i%200,i%150,i%255,255);
+		printText("NIZAMI EC CANDY TIFA NILTA",7,100,100+i,i%200,i%150,i%255,255);
 		usleep(5000);
-		printText("IIIIIII",7,100,100+i,255,255,255,255);
+		printText("NIZAMI EC CANDY TIFA NILTA",7,100,100+i,255,255,255,255);
 		//hapusScreen();
 	}
 	//for (i=0;i<10;i++){
