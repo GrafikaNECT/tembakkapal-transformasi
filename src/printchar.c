@@ -63,9 +63,11 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
     int x,y;
     for (y = _y; y < _y+size; y++) {
         for (x = _x; x < _x+size; x++) {
-            location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+            if ((x < vinfo.xres)&&(y < vinfo.yres)) {
+                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
-            setColor(R,G,B,alpha);
+                setColor(R,G,B,alpha);
+            }
         }
     }
         
@@ -99,7 +101,6 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
             while (j < charpixmatrix_height) {
                 if (pixelmatrix.tab[j][i]) {
                     drawCharpixSquare(x, y, size, R, G, B, alpha);
-                    
                 }
                 j++;
                 y+=size;
@@ -109,8 +110,8 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     }
 }
 
-void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-    int size = 2;
+
+void printText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
     int onecharspace = (charpixmatrix_width+5)*size;
     int i;
     for (i=0;i<alen; i++){
