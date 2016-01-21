@@ -98,6 +98,15 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     }
 }
 
+void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+	static const int size = 1;
+	static const int onecharspace = charpixmatrix_width+2;
+	int i;
+	for (i=0;i<alen; i++){
+		printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
+	}
+}
+
 void hapusScreen(){
     int x = 0, y = 0;       // Where we are going to put the pixel
 
