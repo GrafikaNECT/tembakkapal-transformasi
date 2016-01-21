@@ -66,10 +66,7 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
             if ((x < vinfo.xres)&&(y < vinfo.yres)) {
                 location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                            (y+vinfo.yoffset) * finfo.line_length;
-
-                setColor(R,G,B,alpha);    
-            }
-            
+            setColor(R,G,B,alpha);
         }
     }
         
@@ -94,7 +91,6 @@ void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char a
 void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
     charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
-    long int location = 0;
 
     int i = 0, x = X, k, l;
 
@@ -102,27 +98,26 @@ void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G,
     while (i < charpixmatrix_width) {        
         int j = 0, y = Y;
             while (j < charpixmatrix_height) {
-                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                           (y+vinfo.yoffset) * finfo.line_length;
                 
                 for (k = 0; k < size; ++k) {
                     if (pixelmatrix.tab[j][i]) {
-                        drawCharpixSquare(50, 150, 100, 0, 0, 255, 0);
+                        drawCharpixSquare(x, y, size, R, G, B, alpha);
+                        
                     }
                     location = location + (1+vinfo.xoffset) * (vinfo.bits_per_pixel/8);
                 }
                 j++;
-                y++;
+                y+=size;
             }
             i++;
-            x++;
+            x+=size;
     }
 }
 
 
 void printText(char* a, int alen, int X, int Y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-    static const int size = 3;
-    static const int onecharspace = charpixmatrix_width+5;
+    int size = 2;
+    int onecharspace = (charpixmatrix_width+5)*size;
     int i;
     for (i=0;i<alen; i++){
         printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
