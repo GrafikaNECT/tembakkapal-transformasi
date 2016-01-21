@@ -406,6 +406,21 @@ charpixmatrix_type letterZ = {{
 	{1,1,1,1,1,1,1,1}}
 };
 
+charpixmatrix_type letterDot = {{
+	{0,0,0,0,0,0,0,0},
+	{0,0,0,0,0,0,0,0},
+	{0,0,1,1,1,1,0,0},
+	{0,1,1,1,1,1,1,0},
+	{1,1,1,0,0,1,1,1},
+	{1,1,1,0,0,1,1,1},
+	{1,1,1,0,0,1,1,1},
+	{0,1,1,1,1,1,1,0},
+	{0,0,1,1,1,1,0,0},
+	{0,0,0,0,0,0,0,0},
+	{0,0,0,0,0,0,0,0},
+	{0,0,0,0,0,0,0,0}}
+};
+
 charpixmatrix_type getcharpixmatrix(char C){
 	switch(tolower(C)){
 		case 'a':
@@ -486,6 +501,10 @@ charpixmatrix_type getcharpixmatrix(char C){
 		case 'z':
 			return letterZ;
 			break;
+		case '0':
+			return letterDot;
+			break;
+		
 		default:
 			return blank;
 	}
