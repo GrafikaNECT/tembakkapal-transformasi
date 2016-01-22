@@ -106,7 +106,7 @@ void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char a
     }
 }
 
-void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+void drawChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
 
     charpixmatrix_type pixelmatrix = getcharpixmatrix(a);
 
@@ -131,18 +131,18 @@ int calculateOneCharSpace(int size){
 	return (charpixmatrix_width+5)*size;
 }
 
-void printText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+void drawText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
     int onecharspace = calculateOneCharSpace(size);
     int i;
     for (i=0;i<alen; i++){
-        printChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
+        drawChar(a[i],X+(onecharspace)*i,Y,size,R,G,B,alpha);
     }
 }
 
-void printTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+void drawTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
     int onecharspace = calculateOneCharSpace(size);
     int X = (getXRes()-alen*onecharspace)/2;
-    printText(a, alen, X, Y, size, R, G, B, alpha);
+    drawText(a, alen, X, Y, size, R, G, B, alpha);
 }
 
 void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
@@ -164,7 +164,7 @@ void printToScreen(){
 	memcpy(fbp,workspaceframe,screensize);
 }
 
-void drawPicture(int _x, int _y, int size, int max_X) {
+void drawCatPicture(int _x, int _y, int size, int max_X) {
     int alpha = 0;
     int R0 = 0; int G0 = 0; int B0 = 0;
     int R1 = 178; int G1 = 151; int B1 = 204;

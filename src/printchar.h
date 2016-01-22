@@ -5,11 +5,11 @@ int initializePrinter();
 
 int finishPrinter();
 
-void printChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+void drawChar(char a, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
-void printText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+void drawText(char* a, int alen, int X, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
-void printTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+void drawTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
 void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
@@ -17,7 +17,7 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
-void drawPicture(int _x, int _y, int size, int max_X);
+void drawCatPicture(int _x, int _y, int size, int max_X);
 
 void printToScreen();
 

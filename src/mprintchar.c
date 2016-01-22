@@ -8,19 +8,17 @@ void drawBeveledText(char* a, int alen, int X, int Y, int size, unsigned char R,
 	int drawY = Y;
 	int i;
 	for (i=0;i<bevelLength;i++){
-		printText(a,alen,drawX,drawY,size,bevelR,bevelG,bevelB,bevelalpha);
+		drawText(a,alen,drawX,drawY,size,bevelR,bevelG,bevelB,bevelalpha);
 		drawX--;
 		drawY++;
 	}
-		printText(a,alen,drawX,drawY,size,R,G,B,alpha);
+		drawText(a,alen,drawX,drawY,size,R,G,B,alpha);
 }
 
 int main(){
 	
 	int space = 2;
 	int i;
-	// hapusScreen();
-	//hapusScreen();
 
 	drawPicture(1,1,1,8);
 	
@@ -39,15 +37,15 @@ int main(){
 	printToScreen();
 
 	usleep(1000000);
-	printTextCentered("0  ",3,getYRes()/3,getXRes()/64,255,0,0,0);
+	drawTextCentered("0  ",3,getYRes()/3,getXRes()/64,255,0,0,0);
 	printToScreen();
 
 	usleep(1000000);
-	printTextCentered("00 ",3,getYRes()/3,getXRes()/64,255,255,0,0);
+	drawTextCentered("00 ",3,getYRes()/3,getXRes()/64,255,255,0,0);
 	printToScreen();
 
 	usleep(1000000);
-	printTextCentered("000",3,getYRes()/3,getXRes()/64,255,255,255,0);
+	drawTextCentered("000",3,getYRes()/3,getXRes()/64,255,255,255,0);
 	printToScreen();
 
 	usleep(1000000);
@@ -56,26 +54,25 @@ int main(){
 	printToScreen();
 
 	for (i=getYRes()+1;i>-600;i--){
-		printTextCentered("Asanilta Fahda",14,i+50,2,i%200,i%150,i%255,255);
-		printTextCentered("Tifani Warnita",14,i+100,2,i%200,i%150,i%255,255);
-		printTextCentered("Candy Olivia M",14,i+150,2,i%200,i%150,i%255,255);
-		printTextCentered("Erick Chandra",13,i+200,2,i%200,i%150,i%255,255);
-		printTextCentered("M Nizami",8,i+250,2,i%200,i%150,i%255,255);
-		printTextCentered("Fathul Asrar A",14,i+300,2,i%200,i%150,i%255,255);
+		drawTextCentered("Asanilta Fahda",14,i+50,2,i%200,i%150,i%255,255);
+		drawTextCentered("Tifani Warnita",14,i+100,2,i%200,i%150,i%255,255);
+		drawTextCentered("Candy Olivia M",14,i+150,2,i%200,i%150,i%255,255);
+		drawTextCentered("Erick Chandra",13,i+200,2,i%200,i%150,i%255,255);
+		drawTextCentered("M Nizami",8,i+250,2,i%200,i%150,i%255,255);
+		drawTextCentered("Fathul Asrar A",14,i+300,2,i%200,i%150,i%255,255);
 		printToScreen();
 
 		usleep(5000);
-		printTextCentered("Asanilta Fahda",14,i+50,2,0,0,0,255);
-		printTextCentered("Tifani Warnita",14,i+100,2,0,0,0,255);
-		printTextCentered("Candy Olivia M",14,i+150,2,0,0,0,255);
-		printTextCentered("Erick Chandra",13,i+200,2,0,0,0,255);
-		printTextCentered("M Nizami",8,i+250,2,0,0,0,255);
-		printTextCentered("Fathul Asrar A",14,i+300,2,0,0,0,255);
-		//hapusScreen();
+		drawTextCentered("Asanilta Fahda",14,i+50,2,0,0,0,255);
+		drawTextCentered("Tifani Warnita",14,i+100,2,0,0,0,255);
+		drawTextCentered("Candy Olivia M",14,i+150,2,0,0,0,255);
+		drawTextCentered("Erick Chandra",13,i+200,2,0,0,0,255);
+		drawTextCentered("M Nizami",8,i+250,2,0,0,0,255);
+		drawTextCentered("Fathul Asrar A",14,i+300,2,0,0,0,255);
 	}
 
 	usleep(10000);
-	drawPicture(50,50,15,200);
+	drawCatPicture(50,50,15,200);
 	printToScreen();
 
 	usleep(1000000);
