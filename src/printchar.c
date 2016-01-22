@@ -2,6 +2,7 @@
 #include "char.h"
 
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -16,6 +17,8 @@
     long int screensize = 0;
     char *fbp = 0;
     long int location = 0;
+
+unsigned char * workspaceframe = NULL;
 
 int getXRes(){
 	return vinfo.xres;
@@ -60,12 +63,17 @@ int initializePrinter(){
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
     printf("%d", vinfo.xres*vinfo.yoffset);
+
+    workspaceframe = malloc(screensize);
+    memcpy(workspaceframe,fbp,screensize);
+
     return 0;
 }
 
 int finishPrinter(){
-    munmap(fbp, screensize);
-    close(fbfd);
+    if (workspaceframe) free(workspaceframe);
+    if (fbp) munmap(fbp, screensize);
+    if (fbfd) close(fbfd);
 }
 
 void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
@@ -84,10 +92,10 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
     if (vinfo.bits_per_pixel == 32) {
-        *(fbp + location) = B;        // Some blue
-        *(fbp + location + 1) = G;     //  green
-        *(fbp + location + 2) = R;    //  red
-        *(fbp + location + 3) = alpha;      // alpha
+        *(workspaceframe + location) = B;        // Some blue
+        *(workspaceframe + location + 1) = G;     //  green
+        *(workspaceframe + location + 2) = R;    //  red
+        *(workspaceframe + location + 3) = alpha;      // alpha
 
     } else  { //assume 16bpp
         int b = B/8;
@@ -152,14 +160,18 @@ void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char
         }
 }
 
+void printToScreen(){
+	memcpy(fbp,workspaceframe,screensize);
+}
+
 void drawPicture(int _x, int _y, int size, int max_X) {
     int alpha = 0;
     int R0 = 0; int G0 = 0; int B0 = 0;
-    int R1 = 0; int G1 = 10; int B1 = 30;
-    int R2 = 30; int G2 = 30; int B2 = 30;
-    int R3 = 50; int G3 = 40; int B3 = 10;
-    int R4 = 50; int G4 = 60; int B4 = 40;
-    int R5 = 40; int G5 = 0; int B5 = 10;
+    int R1 = 178; int G1 = 151; int B1 = 204;
+    int R2 = 226; int G2 = 226; int B2 = 226;
+    int R3 = 250; int G3 = 249; int B3 = 184;
+    int R4 = 251; int G4 = 255; int B4 = 255;
+    int R5 = 255; int G5 = 202; int B5 = 207;
     int R,G,B;
     int i;
     int x,y;
