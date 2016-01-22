@@ -60,6 +60,7 @@ int initializePrinter(){
     }
     printf("The framebuffer device was mapped to memory successfully.\n");
     printf("%d", vinfo.xres*vinfo.yoffset);
+    return 0;
 }
 
 int finishPrinter(){

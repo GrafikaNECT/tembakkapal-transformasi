@@ -16,7 +16,7 @@ void drawBeveledText(char* a, int alen, int X, int Y, int size, unsigned char R,
 }
 
 int main(){
-	system("setterm -cursor off");
+	
 	int space = 2;
 	int i;
 	// hapusScreen();
@@ -24,7 +24,10 @@ int main(){
 
 	drawPicture(1,1,1,8);
 	
-	initializePrinter();
+	if (initializePrinter()!=0) return 0;
+
+	system("setterm -cursor off");
+
 	drawBeveledText("GRAPHICAT!!!",12,100,getYRes()/2-60,10,255,0,0,255,20,
 				0,255,255,255);
 	usleep(3000000);
