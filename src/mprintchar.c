@@ -44,6 +44,8 @@ int main(){
 
 	usleep(1000000);
 
+	drawCanvas(0,0,0,255);
+
 	for (i=getYRes()+1;i>-600;i--){
 		printTextCentered("Asanilta Fahda",14,i+50,2,i%200,i%150,i%255,255);
 		printTextCentered("Tifani Warnita",14,i+100,2,i%200,i%150,i%255,255);
