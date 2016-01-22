@@ -34,13 +34,13 @@ int main(){
 	drawCanvas(0,0,0,255);
 
 	usleep(1000000);
-	printTextCentered("0  ",3,getYRes()/3,20,255,0,0,0);
+	printTextCentered("0  ",3,getYRes()/3,getXRes()/5/8,255,0,0,0);
 
 	usleep(1000000);
-	printTextCentered("00 ",3,getYRes()/3,20,255,255,0,0);
+	printTextCentered("00 ",3,getYRes()/3,getXRes()/5/8,255,255,0,0);
 
 	usleep(1000000);
-	printTextCentered("000",3,getYRes()/3,20,255,255,255,0);
+	printTextCentered("000",3,getYRes()/3,getXRes()/5/8,255,255,255,0);
 
 	usleep(1000000);
 
