@@ -32,6 +32,18 @@ int main(){
 				0,255,255,255);
 	usleep(3000000);
 	drawCanvas(0,0,0,255);
+
+	usleep(1000000);
+	printTextCentered("0  ",3,getYRes()/3,20,255,0,0,0);
+
+	usleep(1000000);
+	printTextCentered("00 ",3,getYRes()/3,20,255,255,0,0);
+
+	usleep(1000000);
+	printTextCentered("000",3,getYRes()/3,20,255,255,255,0);
+
+	usleep(1000000);
+
 	for (i=getYRes()+1;i>-600;i--){
 		printTextCentered("Asanilta Fahda",14,i+50,2,i%200,i%150,i%255,255);
 		printTextCentered("Tifani Warnita",14,i+100,2,i%200,i%150,i%255,255);
@@ -52,6 +64,8 @@ int main(){
 
 	usleep(10000);
 	drawPicture(10,10,15,200);
+
+	usleep(1000000);
 
 	//for (i=0;i<10;i++){
 		//for (j=0;j<10;j++){
