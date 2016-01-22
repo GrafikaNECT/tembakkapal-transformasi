@@ -20,8 +20,6 @@ int main(){
 	int space = 2;
 	int i;
 
-	drawPicture(1,1,1,8);
-	
 	if (initializePrinter()!=0) return 0;
 
 	system("setterm -cursor off");
