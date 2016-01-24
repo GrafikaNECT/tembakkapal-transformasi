@@ -92,9 +92,9 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
     if (vinfo.bits_per_pixel == 32) {
-        *(workspaceframe + location) = B;        // Some blue
-        *(workspaceframe + location + 1) = G;     //  green
-        *(workspaceframe + location + 2) = R;    //  red
+        *(workspaceframe + location) = (unsigned char) (B * alpha + (*(workspaceframe + location)) * (255 - alpha));        // Some blue
+        *(workspaceframe + location + 1) = (unsigned char) (G * alpha + (*(workspaceframe + location + 1)) * (255 - alpha));     //  green
+        *(workspaceframe + location + 2) = (unsigned char) (R * alpha + (*(workspaceframe + location + 2)) * (255 - alpha));    //  red
         *(workspaceframe + location + 3) = alpha;      // alpha
 
     } else  { //assume 16bpp
