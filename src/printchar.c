@@ -76,6 +76,12 @@ int finishPrinter(){
     if (fbfd) close(fbfd);
 }
 
+void drawPix(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
+        location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                   (y+vinfo.yoffset) * finfo.line_length;
+        setColor(R,G,B,alpha);
+}
+
 void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
     int x,y;
     for (y = _y; y < _y+size; y++) {
@@ -92,10 +98,10 @@ void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char 
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
     if (vinfo.bits_per_pixel == 32) {
-        *(workspaceframe + location) = (unsigned char) (B * alpha + (*(workspaceframe + location)) * (255 - alpha));        // Some blue
-        *(workspaceframe + location + 1) = (unsigned char) (G * alpha + (*(workspaceframe + location + 1)) * (255 - alpha));     //  green
-        *(workspaceframe + location + 2) = (unsigned char) (R * alpha + (*(workspaceframe + location + 2)) * (255 - alpha));    //  red
-        *(workspaceframe + location + 3) = alpha;      // alpha
+        *(workspaceframe + location) = (unsigned char) (B * alpha/255 + (*(workspaceframe + location)) * (255 - alpha)/255);        // Some blue
+        *(workspaceframe + location + 1) = (unsigned char) (G * alpha/255 + (*(workspaceframe + location + 1)) * (255 - alpha)/255);     //  green
+        *(workspaceframe + location + 2) = (unsigned char) (R * alpha/255 + (*(workspaceframe + location + 2)) * (255 - alpha)/255);    //  red
+        *(workspaceframe + location + 3) = alpha+(*(workspaceframe + location + 3))*(1-alpha)/255;      // alpha
 
     } else  { //assume 16bpp
         int b = B/8;

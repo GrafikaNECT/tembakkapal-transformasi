@@ -35,15 +35,15 @@ int main(){
 	printToScreen();
 
 	usleep(1000000);
-	drawTextCentered("0  ",3,getYRes()/3,getXRes()/64,255,0,0,0);
+	drawTextCentered("0  ",3,getYRes()/3,getXRes()/64,255,0,0,255);
 	printToScreen();
 
 	usleep(1000000);
-	drawTextCentered("00 ",3,getYRes()/3,getXRes()/64,255,255,0,0);
+	drawTextCentered("00 ",3,getYRes()/3,getXRes()/64,255,255,0,255);
 	printToScreen();
 
 	usleep(1000000);
-	drawTextCentered("000",3,getYRes()/3,getXRes()/64,255,255,255,0);
+	drawTextCentered("000",3,getYRes()/3,getXRes()/64,255,255,255,255);
 	printToScreen();
 
 	usleep(1000000);

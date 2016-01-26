@@ -13,6 +13,8 @@ void drawTextCentered(char* a, int alen, int Y, int size, unsigned char R, unsig
 
 void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
+void drawPix(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
+
 void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
 
 void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char alpha);
