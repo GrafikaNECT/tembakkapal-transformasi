@@ -57,6 +57,14 @@ int kapalterbang::getHeight(){
 	return height;
 }
 
+char* kapalterbang::getColorFileName(){
+	return colorFileName;
+}
+
+void kapalterbang::setColorFileName(char* file){
+	colorFileName = file;
+}
+
 bool kapalterbang::isExploding(){
 	return exploding;
 }
@@ -71,15 +79,16 @@ void kapalterbang::explode(){
 
 
 	//fungsi helper
+
 bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR){
-
-	//TODO benerin ini ntar
-
-	bool nointersection = 0;
-	nointersection |= (x1 > xTR && x2 > xTR);
-	nointersection |= (x1 < xBL && x2 < xBL);
-	nointersection |= (y1 > yTR && y2 > yTR);
-	nointersection |= (y1 < yBL && y2 < yBL);
-
-	return !nointersection;
+//line bukan segment
+	int y = (float)(y2-y1)/(float)(x2-x1)*xTR+y1;
+	if (y>=yBL && y<=yTR) return true;
+ 	y = (float)(y2-y1)/(float)(x2-x1)*xBL+y1;
+	if (y>=yBL && y<=yTR) return true;
+	int x = (float)(x2-x1)/(float)(y2-y1)*yTR+x1;
+	if (x>=xBL && x<=xTR) return true;
+ 	x = (float)(x2-x1)/(float)(y2-y1)*yBL+x1;
+	if (x>=xBL && x<=xTR) return true;
+	return false;
 }

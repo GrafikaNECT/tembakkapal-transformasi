@@ -15,12 +15,15 @@ class game{
 	void updateControls();
 	void updateLogic();
 	void drawScreen();
+	bool gameOver();
 
 	void init();
 	void run();
 
 	void addScreenObject(drawable * newScreenObject);
 
+	void onMoveRightKeyPressed();
+	void onMoveLeftKeyPressed();
 	void onRightKeyPressed();
 	void onLeftKeyPressed();
 	void onShootKeyPressed();

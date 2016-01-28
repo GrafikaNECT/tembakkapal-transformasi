@@ -1,17 +1,23 @@
 #include "kapallaut.h"
 #include "printchar.h"
+#include "bresenham.h"
+#include "line-pattern.h"
 
 #include <math.h>
 
+// Ctor kapallaut
 kapallaut::kapallaut(){x=0;y=0;width=0;height=0;turretAngle=0;}
 
-kapallaut::kapallaut(int _x,int _y,float _turretAngle){
+// Ctor kapallaut with params
+kapallaut::kapallaut(int _x,int _y,float _turretAngle) {
 	x=_x;
 	y=_y;
+	height = 80;
 	turretAngle=_turretAngle;
 }
 
-kapallaut::kapallaut(int _x,int _y,int _width,int _height, float _turretAngle){
+// Ctor kapallaut with params
+kapallaut::kapallaut(int _x,int _y,int _width,int _height, float _turretAngle) {
 	x=_x;
 	y=_y;
 	width=_width;
@@ -19,7 +25,8 @@ kapallaut::kapallaut(int _x,int _y,int _width,int _height, float _turretAngle){
 	turretAngle=_turretAngle;
 }
 
-bullet* kapallaut::shootBullet(){
+// Shoot bullet from kapallaut
+bullet* kapallaut::shootBullet() {
 	bullet * retval = new bullet(x+bulletrelativex,
 					x+(getXRes()+getYRes())*cos(turretAngle),
 					y+bulletrelativey,
@@ -27,23 +34,53 @@ bullet* kapallaut::shootBullet(){
 	return retval;
 }
 
+
 void kapallaut::draw(){
-	drawPix(x,y,255,255,255,255);
-	draw(x,y);
-}
-
-void kapallaut::turnTurretRight(){
-	//TODO belum
-}
-void kapallaut::turnTurretLeft(){
-	//TODO belum
-}
-
-
-void kapallaut::draw(int x, int y){
 	drawPicture(x,y,4,200,"ship.txt","color.txt");
+	drawTurret();
 }
 
-void kapallaut::move(int deltax,int deltay){
+void kapallaut::drawTurret(){
 
+	static const char gg[] = {150,140};
+	static const char alph[] = {255,255};
+	static const line_pattern cannonptr = makeLinePattern(gg,gg,gg,alph,2);
+
+	int x1 = x+bulletrelativex;
+	int length = 20;
+	int x2 = x1+length*cos(turretAngle);
+	int y1 = y + bulletrelativey;
+	int y2 = y1 +length*sin(turretAngle);
+	bresenham_drawline(x1,x2,y1,y2,cannonptr);
+	bresenham_drawline(x1+1,x2+1,y1,y2,cannonptr);
+	bresenham_drawline(x1+2,x2+2,y1,y2,cannonptr);
+	bresenham_drawline(x1-1,x2-1,y1,y2,cannonptr);
+	bresenham_drawline(x1-2,x2-2,y1,y2,cannonptr);
+}
+
+// Move the ship to right
+void kapallaut::moveRight() {
+	x+=shipSpeed;
+}
+
+// Move the ship to left
+void kapallaut::moveLeft() {
+	x-=shipSpeed;
+}
+
+// Turn shoot degree to right
+void kapallaut::turnTurretRight() {
+	if (turretAngle < (2*PI)-(PI/30))
+		turretAngle+=turretTurnSpeed;
+
+}
+
+// Turn shoot degree to left
+void kapallaut::turnTurretLeft() {
+	if (turretAngle > (PI)+(PI/30))
+		turretAngle-=turretTurnSpeed;
+}
+
+int kapallaut::getHeight(){
+	return height;
 }
