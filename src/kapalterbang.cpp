@@ -23,6 +23,7 @@ bool kapalterbang::hitBullet(bullet b){
 		b.getY2(),
 		x,y,x+width,y+width);
 }
+
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
 	unsigned char g = 255;
@@ -70,6 +71,9 @@ void kapalterbang::explode(){
 
 	//fungsi helper
 bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR){
+
+	//TODO benerin ini ntar
+
 	bool nointersection = 0;
 	nointersection |= (x1 > xTR && x2 > xTR);
 	nointersection |= (x1 < xBL && x2 < xBL);
