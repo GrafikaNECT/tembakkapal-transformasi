@@ -3,7 +3,7 @@
 
 #include "bullet.h"
 
-class kapalterbang : drawable{
+class kapalterbang : public drawable{
 	public:
 	kapalterbang(int x,int y);
 	kapalterbang(int x,int y,int width,int height);
@@ -16,11 +16,17 @@ class kapalterbang : drawable{
 	int getWidth();
 	int getHeight();
 
+	bool isExploding();
+	void explode();
+	void setExploding(bool b);
+
 	protected:
 	int x;
 	int y;
 	int width;
 	int height;
+
+	bool exploding;
 
 	private:
 	//fungsi helper

@@ -11,6 +11,9 @@ class game{
 	void updateLogic();
 	void drawScreen();
 
+	void init();
+	void run();
+
 	void addScreenObject(drawable * newScreenObject);
 
 	protected:
