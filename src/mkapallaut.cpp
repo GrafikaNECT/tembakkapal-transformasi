@@ -17,9 +17,8 @@ int main(){
 	printToScreen();
 
 	usleep(10000);
-	kapallaut kapal = kapallaut(0,0);
-	drawPicture(50,50,15,200,"ship.txt");
-
+	kapallaut* kapal = new kapallaut(0,0);
+	
 	printToScreen();
 
 	usleep(1000000);
