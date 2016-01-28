@@ -19,7 +19,7 @@ class game{
 	protected:
 	std::vector<drawable*> screenObjects;
 
-	std::vector<bullet> bullets;
+	std::vector<bullet*> bullets;
 
 	kapalterbang kapalterbang1;
 };

@@ -24,11 +24,9 @@ bool kapalterbang::hitBullet(bullet b){
 		x,y,x+width,y+width);
 }
 
-#include <iostream>
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
 	unsigned char g = 255;
-	std::cout << x << " " << y << std::endl;
 	line_pattern p = makeLinePattern(&g,&g,&g,&g,1);
 	bresenham_drawline(x,x+width,y,y,p);
 	bresenham_drawline(x+width,x+width,y,y+height,p);
@@ -74,11 +72,13 @@ void kapalterbang::explode(){
 	//fungsi helper
 bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR){
 
+	//TODO benerin ini ntar
+
 	bool nointersection = 0;
-	nointersection |= (_x1 > xTR && _x2 > xTR);
-	nointersection |= (_x1 < xBL && _x2 < xBL);
-	nointersection |= (_y1 > yTR && _y2 > yTR);
-	nointersection |= (_y1 < yBL && _y2 < yBL);
+	nointersection |= (x1 > xTR && x2 > xTR);
+	nointersection |= (x1 < xBL && x2 < xBL);
+	nointersection |= (y1 > yTR && y2 > yTR);
+	nointersection |= (y1 < yBL && y2 < yBL);
 
 	return !nointersection;
 }
