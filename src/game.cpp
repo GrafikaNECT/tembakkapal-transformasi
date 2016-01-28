@@ -50,8 +50,6 @@ game::game():kapalterbang1(50,getXRes()-10,50,20){
 }
 
 void game::updateControls(){
-
-	initTermios();
 	if (kbhit()){
 		char cc = getch();
 		resetTermios();
@@ -128,6 +126,8 @@ void game::drawScreen(){
 }
 
 void game::init(){
+
+	initTermios();
 	initializePrinter();
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
@@ -138,10 +138,14 @@ void game::init(){
 
 }
 
+bool game::gameOver(){
+	return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
+}
+
 void game::run(){
 	//TODO nanti harus diganti
 	init();
-	while (true /*nanti diganti*/){
+	while (!gameOver()){
 		updateControls();
 		updateLogic();
 		drawScreen();
@@ -149,6 +153,7 @@ void game::run(){
 		usleep(200);
 	}
 	finishPrinter();
+	resetTermios();
 }
 
 void game::addScreenObject(drawable * newScreenObject){
