@@ -1,5 +1,5 @@
 #include <vector>
-#include <list>
+
 #include "drawable.h"
 #include "bullet.h"
 #include "kapalterbang.h"
@@ -19,7 +19,7 @@ class game{
 	protected:
 	std::vector<drawable*> screenObjects;
 
-	std::list<bullet> bullets;
+	std::vector<bullet> bullets;
 
 	kapalterbang kapalterbang1;
 };
