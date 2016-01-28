@@ -7,6 +7,8 @@ bin/main: Makefile src/mgame.cpp src/game.cpp src/drawable.cpp src/kapalterbang.
 	cp src/planecolor1.txt bin/planecolor1.txt
 	cp src/planecolor2.txt bin/planecolor2.txt
 	cp src/planecolor3.txt bin/planecolor3.txt
+	cp src/explosion.txt bin/explosion.txt
+	cp src/explosioncolor.txt bin/explosioncolor.txt
 
 bin:
 	mkdir -p bin

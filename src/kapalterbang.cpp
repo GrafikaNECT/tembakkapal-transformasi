@@ -54,7 +54,9 @@ bool kapalterbang::hitBullet(bullet b){
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
 	drawPicture(x,y,3,200,"plane2.txt",colorFileName);
-	if (isExploding())drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
+	if (isExploding())
+		drawPicture(getX(),getY(),3,200,"explosion.txt","explosioncolor.txt");
+		//drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
 	
 }
 

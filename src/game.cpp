@@ -163,6 +163,11 @@ void game::run(){
 
 		usleep(200);
 	}
+	usleep(500);
+	drawTextCentered("GAME OVER",9,300,5,255,0,0,255);
+	printToScreen();
+	usleep(500);
+
 	finishPrinter();
 	resetTermios();
 	sleep(2);
