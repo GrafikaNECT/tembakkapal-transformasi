@@ -154,6 +154,7 @@ void game::run(){
 	}
 	finishPrinter();
 	resetTermios();
+	sleep(2);
 }
 
 void game::addScreenObject(drawable * newScreenObject){
