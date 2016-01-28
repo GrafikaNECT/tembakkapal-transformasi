@@ -43,7 +43,7 @@ char getch(){
 
 //TODO ini belum selesai!!!
 
-game::game():kapalterbang1(50,getXRes()-10,50,20){
+game::game():kapalterbang1(50,getXRes()-10,50,20),kapalterbang2(50,getXRes()-5,50,20),kapalterbang3(50,getXRes()-5,50,20){
 	
 }
 
@@ -105,6 +105,9 @@ void game::updateLogic(){
 	std::queue<int> deletequeue;
 
 	kapalterbang1.move(-3,0);
+	kapalterbang2.move(-2,0);
+	kapalterbang3.move(-1,0);
+
 	for (int i=0;i<bullets.size();i++){
 		bullets[i]->decrementLifetime();
 		if (bullets[i]->getLifetime()<=0){
@@ -112,6 +115,12 @@ void game::updateLogic(){
 		}
 		if (kapalterbang1.hitBullet(*bullets[i])){
 			kapalterbang1.explode();
+		}
+		if (kapalterbang2.hitBullet(*bullets[i])){
+			kapalterbang2.explode();
+		}
+		if (kapalterbang3.hitBullet(*bullets[i])){
+			kapalterbang3.explode();
 		}
 	}
 
@@ -143,6 +152,12 @@ void game::init(){
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
 	addScreenObject(&kapalterbang1);
+	kapalterbang newkapal2(getXRes(),50,50,20,"planecolor2.txt");
+	kapalterbang2 = newkapal2;
+	addScreenObject(&kapalterbang2);
+	kapalterbang newkapal3(getXRes(),50,50,20,"planecolor3.txt");
+	kapalterbang3 = newkapal3;
+	addScreenObject(&kapalterbang3);
 	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);

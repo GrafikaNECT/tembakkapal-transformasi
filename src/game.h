@@ -36,6 +36,10 @@ class game{
 
 	kapalterbang kapalterbang1;
 
+	kapalterbang kapalterbang2;
+
+	kapalterbang kapalterbang3;
+
 	kapallaut kapallaut1;
 
 };
