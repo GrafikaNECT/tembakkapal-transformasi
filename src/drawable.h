@@ -5,6 +5,7 @@ class drawable{
 	public:
 	bool operator<(const drawable& rhs);
 	virtual void draw() = 0;
+	virtual void draw(int x, int y) = 0;
 
 	void setLevel(int _level);
 	int getLevel();

@@ -21,6 +21,8 @@ void setColor(unsigned char R, unsigned char G, unsigned char B, unsigned char a
 
 void drawCatPicture(int _x, int _y, int size, int max_X);
 
+void drawPicture(int _x, int _y, int size, int max_X, char* fileName);
+
 void printToScreen();
 
 int getXRes();
