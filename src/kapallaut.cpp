@@ -35,16 +35,6 @@ bullet* kapallaut::shootBullet() {
 
 
 void kapallaut::draw(){
-	draw(x,y);
-}
-
-// Move the ship to right
-void kapallaut::moveRight() {
-	x+=shipSpeed;
-}
-
-<<<<<<< HEAD
-void kapallaut::draw(int x, int y){
 	drawPicture(x,y,4,200,"ship.txt","color.txt");
 	drawTurret();
 }
@@ -65,7 +55,13 @@ void kapallaut::drawTurret(){
 	bresenham_drawline(x1+2,x2+2,y1,y2,cannonptr);
 	bresenham_drawline(x1-1,x2-1,y1,y2,cannonptr);
 	bresenham_drawline(x1-2,x2-2,y1,y2,cannonptr);
-=======
+}
+
+// Move the ship to right
+void kapallaut::moveRight() {
+	x+=shipSpeed;
+}
+
 // Move the ship to left
 void kapallaut::moveLeft() {
 	x-=shipSpeed;
@@ -75,16 +71,11 @@ void kapallaut::moveLeft() {
 void kapallaut::turnTurretRight() {
 	if (turretAngle < (2*PI)-(PI/30))
 		turretAngle+=turretTurnSpeed;
->>>>>>> a72faa2825b04be4b0b74e655ab80c0ec543980f
+
 }
 
 // Turn shoot degree to left
 void kapallaut::turnTurretLeft() {
 	if (turretAngle > (PI)+(PI/30))
 		turretAngle-=turretTurnSpeed;
-}
-
-// Draw kapallaut on screen with specific params
-void kapallaut::draw(int x, int y) {
-	drawPicture(x,y,4,200,"ship.txt","color.txt");
 }
