@@ -21,15 +21,15 @@ kapallaut::kapallaut(int _x,int _y,int _width,int _height, float _turretAngle){
 
 bullet* kapallaut::shootBullet(){
 	bullet * retval = new bullet(x+bulletrelativex,
-					y+bulletrelativey,
 					x+(getXRes()+getYRes())*cos(turretAngle),
+					y+bulletrelativey,
 					y+(getXRes()+getYRes())*sin(turretAngle),5);
 	return retval;
 }
 
 void kapallaut::draw(){
 	drawPix(x,y,255,255,255,255);
-	//draw(x,y);
+	draw(x,y);
 }
 
 void kapallaut::turnTurretRight(){
@@ -41,7 +41,7 @@ void kapallaut::turnTurretLeft(){
 
 
 void kapallaut::draw(int x, int y){
-	drawPicture(x,y,15,200,"ship.txt","color.txt");
+	drawPicture(x,y,4,200,"ship.txt","color.txt");
 }
 
 void kapallaut::move(int deltax,int deltay){

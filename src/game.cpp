@@ -149,7 +149,7 @@ void game::run(){
 		updateLogic();
 		drawScreen();
 
-		usleep(1000);
+		usleep(200);
 	}
 	finishPrinter();
 }
