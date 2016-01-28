@@ -165,7 +165,9 @@ void game::init(){
 }
 
 bool game::gameOver(){
-	return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
+	return (kapalterbang1.isExploding() || kapalterbang1.getX()<0)
+		&&(kapalterbang2.isExploding() || kapalterbang2.getX()<0)
+		&&(kapalterbang3.isExploding() || kapalterbang3.getX()<0);
 }
 
 void game::run(){
