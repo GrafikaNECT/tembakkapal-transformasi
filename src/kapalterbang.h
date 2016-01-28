@@ -5,32 +5,36 @@
 
 class kapalterbang : public drawable{
 	public:
-	kapalterbang(int x,int y);
-	kapalterbang(int x,int y,int width,int height);
-	bool hitBullet(bullet b);
-	void draw();
-	void move(int deltax,int deltay);
+		kapalterbang(int x,int y);
+		kapalterbang(int x,int y,int width,int height);
+		bool hitBullet(bullet b);
+		void draw();
+		void move(int deltax,int deltay);
 
-	int getX();
-	int getY();
-	int getWidth();
-	int getHeight();
+		int getX();
+		int getY();
+		int getWidth();
+		int getHeight();
 
-	bool isExploding();
-	void explode();
-	void setExploding(bool b);
+		bool isExploding();
+		void explode();
+		void setExploding(bool b);
+		char* kapalterbang::getColorFileName();
+		void kapalterbang::setColorFileName(char* file);
+
 
 	protected:
-	int x;
-	int y;
-	int width;
-	int height;
+		int x;
+		int y;
+		int width;
+		int height;
 
-	bool exploding;
+		bool exploding;
+		char* colorFileName;
 
 	private:
-	//fungsi helper
-	bool lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR);
+		//fungsi helper
+		bool lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR);
 };
 
 #endif
