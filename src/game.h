@@ -15,6 +15,7 @@ class game{
 	void updateControls();
 	void updateLogic();
 	void drawScreen();
+	bool gameOver();
 
 	void init();
 	void run();
