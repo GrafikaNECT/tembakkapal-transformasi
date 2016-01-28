@@ -7,7 +7,9 @@ kapalterbang::kapalterbang(int _x,int _y){
 	x=_x;
 	y=_y;
 	exploding=false;
+	draw();
 }
+
 kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	x=_x;
 	y=_y;
@@ -15,6 +17,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	height=_height;
 	exploding=false;
 }
+
 bool kapalterbang::hitBullet(bullet b){
 	return lineIntersectsSquare(
 		b.getX1(),
@@ -26,15 +29,11 @@ bool kapalterbang::hitBullet(bullet b){
 
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
-	unsigned char g = 255;
-	line_pattern p = makeLinePattern(&g,&g,&g,&g,1);
-	bresenham_drawline(x,x+width,y,y,p);
-	bresenham_drawline(x+width,x+width,y,y+height,p);
-	bresenham_drawline(x,x,y,y+height,p);
-	bresenham_drawline(x,x,y+height,y+height,p);
+	drawPicture(0,0,15,200,"plane2.txt","color.txt");
 	if (isExploding())drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
 	
 }
+
 void kapalterbang::move(int deltax,int deltay){
 	x+=deltax;
 	y+=deltay;

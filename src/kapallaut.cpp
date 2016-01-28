@@ -41,7 +41,7 @@ void kapallaut::turnTurretLeft(){
 
 
 void kapallaut::draw(int x, int y){
-	drawPicture(x,y,15,200,"ship.txt");
+	drawPicture(x,y,15,200,"ship.txt","color.txt");
 }
 
 void kapallaut::move(int deltax,int deltay){
