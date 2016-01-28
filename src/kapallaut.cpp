@@ -3,25 +3,42 @@
 
 #include <math.h>
 
-kapallaut::kapallaut(int _x,int _y){
+kapallaut::kapallaut(){x=0;y=0;width=0;height=0;turretAngle=0;}
+
+kapallaut::kapallaut(int _x,int _y,float _turretAngle){
 	x=_x;
 	y=_y;
+	turretAngle=_turretAngle;
 }
 
-kapallaut::kapallaut(int _x,int _y,int _width,int _height){
+kapallaut::kapallaut(int _x,int _y,int _width,int _height, float _turretAngle){
 	x=_x;
 	y=_y;
 	width=_width;
 	height=_height;
+	turretAngle=_turretAngle;
 }
 
-bullet* kapallaut::shootBullet(int x){
-	bullet * retval = new bullet(x+relativebulletx,
-					y+relativebullety,
+bullet* kapallaut::shootBullet(){
+	bullet * retval = new bullet(x+bulletrelativex,
+					y+bulletrelativey,
 					x+(getXRes()+getYRes())*cos(turretAngle),
-					y+(getXRes()+getYRes())*sin(turretAngle),5)
+					y+(getXRes()+getYRes())*sin(turretAngle),5);
 	return retval;
 }
+
+void kapallaut::draw(){
+	drawPix(x,y,255,255,255,255);
+	//draw(x,y);
+}
+
+void kapallaut::turnTurretRight(){
+	//TODO belum
+}
+void kapallaut::turnTurretLeft(){
+	//TODO belum
+}
+
 
 void kapallaut::draw(int x, int y){
 	drawPicture(x,y,15,200,"ship.txt");

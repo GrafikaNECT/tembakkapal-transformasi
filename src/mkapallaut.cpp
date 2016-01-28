@@ -17,11 +17,12 @@ int main(){
 	printToScreen();
 
 	usleep(10000);
-	kapallaut* kapal = new kapallaut(0,0);
+	kapallaut* kapal = new kapallaut(0,0,255);
 	
 	printToScreen();
 
 	usleep(1000000);
+	delete kapal;
 
 	system("setterm -cursor on");
 	finishPrinter();

@@ -3,6 +3,7 @@
 
 class drawable{
 	public:
+	drawable(){};
 	bool operator<(const drawable& rhs);
 	virtual void draw() = 0;
 

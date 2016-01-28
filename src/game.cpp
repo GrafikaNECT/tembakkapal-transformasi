@@ -6,10 +6,89 @@
 
 #include <queue>
 
+
+
+#include <stdlib.h> 
+#include <unistd.h> 
+#include <sys/select.h> 
+#include <termios.h> 
+#include <time.h> 
+#include <stdio.h>
+
+static struct termios old_termios, new_termios;
+/* restore new terminal i/o settings */
+void resetTermios(){
+	tcsetattr(0,TCSANOW,&old_termios);
+}
+/* initialize new terminal i/o settings */
+void initTermios(){
+	tcgetattr(0,&old_termios); // store old terminal 
+	new_termios = old_termios; // assign to new setting 
+	new_termios.c_lflag &= ~ICANON; // disable buffer i/o 
+	new_termios.c_lflag &= ~ECHO; // disable echo mode 
+	tcsetattr(0,TCSANOW,&new_termios); // use new terminal setting 
+}
+/* detect keyboard press */
+int kbhit(){
+	struct timeval tv = {0L,0L};
+	fd_set fds;
+	FD_ZERO(&fds);
+	FD_SET(0,&fds);
+	return select(1,&fds,NULL,NULL,&tv);
+}
+/* read 1 character */
+char getch(){
+	char ch;
+	ch = getchar();
+	return ch;
+}
+
 //TODO ini belum selesai!!!
 
 game::game():kapalterbang1(50,getXRes()-10,50,20){
 	
+}
+
+void game::updateControls(){
+
+	initTermios();
+	if (kbhit()){
+		char cc = getch();
+		resetTermios();
+		switch(cc){
+			default:break;
+			case 'D':
+			case 'd':
+				onRightKeyPressed();break;
+			case 'A':
+			case 'a':
+				onLeftKeyPressed();break;
+			case 'S':
+			case 's':
+				onShootKeyPressed();break;
+		}
+	}
+}
+
+
+void game::onRightKeyPressed(){
+
+}
+void game::onLeftKeyPressed(){
+
+}
+
+#include <iostream>
+void game::onShootKeyPressed(){
+	bullet * newbullet = kapallaut1.shootBullet();
+
+	std::cout<< newbullet->getX1() <<std::endl;
+	std::cout<< newbullet->getY1() <<std::endl;
+	std::cout<< newbullet->getX2() <<std::endl;
+	std::cout<< newbullet->getY2() <<std::endl;
+
+	bullets.push_back(newbullet);
+	addScreenObject(newbullet);
 }
 
 void game::updateLogic(){
@@ -52,6 +131,9 @@ void game::init(){
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
 	addScreenObject(&kapalterbang1);
+	kapallaut newkapallaut(50,getYRes()-50,270);
+	kapallaut1 = newkapallaut;
+	addScreenObject(&kapallaut1);
 
 	//untuk TESTING
 	bullet* b = new bullet(0,2*getXRes()/3,getYRes()/2,0,4);
@@ -63,6 +145,7 @@ void game::run(){
 	//TODO nanti harus diganti
 	init();
 	while (true /*nanti diganti*/){
+		updateControls();
 		updateLogic();
 		drawScreen();
 
