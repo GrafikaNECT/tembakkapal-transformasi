@@ -21,6 +21,8 @@ class game{
 
 	void addScreenObject(drawable * newScreenObject);
 
+	void onMoveRightKeyPressed();
+	void onMoveLeftKeyPressed();
 	void onRightKeyPressed();
 	void onLeftKeyPressed();
 	void onShootKeyPressed();

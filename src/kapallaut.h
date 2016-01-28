@@ -13,8 +13,9 @@ class kapallaut: public drawable{
 	bullet* shootBullet();
 	void draw();
 	void draw(int x, int y);
-	void move(int deltax,int deltay);
 
+	void moveRight();
+	void moveLeft();
 	void turnTurretRight();
 	void turnTurretLeft();
 
@@ -28,6 +29,7 @@ class kapallaut: public drawable{
 	static const int bulletrelativey=0;
 
 	static const float turretTurnSpeed=PI/30;
+	static const int shipSpeed = 5;
 	float turretAngle;
 };
 

@@ -59,15 +59,28 @@ void game::updateControls(){
 			default:break;
 			case 'D':
 			case 'd':
-				onRightKeyPressed();break;
+				onMoveRightKeyPressed();break;
 			case 'A':
 			case 'a':
+				onMoveLeftKeyPressed();break;
+			case 'L':
+			case 'l':
+				onRightKeyPressed();break;
+			case 'J':
+			case 'j':
 				onLeftKeyPressed();break;
-			case 'S':
-			case 's':
+			case 32:
 				onShootKeyPressed();break;
 		}
 	}
+}
+
+void game::onMoveRightKeyPressed() {
+	kapallaut1.moveRight();
+}
+
+void game::onMoveLeftKeyPressed() {
+	kapallaut1.moveLeft();
 }
 
 
@@ -78,6 +91,8 @@ void game::onLeftKeyPressed(){
 	kapallaut1.turnTurretLeft();
 
 }
+
+
 
 #include <iostream>
 void game::onShootKeyPressed(){
