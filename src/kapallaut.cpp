@@ -33,10 +33,10 @@ void kapallaut::draw(){
 }
 
 void kapallaut::turnTurretRight(){
-	//TODO belum
+	turretAngle+=turretTurnSpeed;
 }
 void kapallaut::turnTurretLeft(){
-	//TODO belum
+	turretAngle-=turretTurnSpeed;
 }
 
 

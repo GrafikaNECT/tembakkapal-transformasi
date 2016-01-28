@@ -72,9 +72,10 @@ void game::updateControls(){
 
 
 void game::onRightKeyPressed(){
-
+	kapallaut1.turnTurretRight();
 }
 void game::onLeftKeyPressed(){
+	kapallaut1.turnTurretLeft();
 
 }
 
@@ -131,14 +132,10 @@ void game::init(){
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
 	addScreenObject(&kapalterbang1);
-	kapallaut newkapallaut(50,getYRes()-50,270);
+	kapallaut newkapallaut(50,getYRes()-50,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);
 
-	//untuk TESTING
-	bullet* b = new bullet(0,2*getXRes()/3,getYRes()/2,0,4);
-	bullets.push_back(b);
-	addScreenObject(bullets[bullets.size()-1]);
 }
 
 void game::run(){
