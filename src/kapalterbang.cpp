@@ -26,7 +26,7 @@ bool kapalterbang::hitBullet(bullet b){
 		b.getY1(),
 		b.getX2(),
 		b.getY2(),
-		x,y,x+width,y+width);
+		x,y,x+width,y+height);
 }
 
 void kapalterbang::draw(){
@@ -77,17 +77,14 @@ void kapalterbang::explode(){
 	setExploding(true);
 }
 
-
 	//fungsi helper
 bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR){
 
-	//TODO benerin ini ntar
+	for (int x=xBL;x<=xTR;x++){
+		long y = ((long)x-(long)x1)*((long)y2-(long)y1)/((long)x2-(long)x1)+y1;
+		if (y>=yBL && y<= yTR) return true;
+		drawPix(x-1,y-1,255,255,255,255);
+	}
+	return false;
 
-	bool nointersection = 0;
-	nointersection |= (x1 > xTR && x2 > xTR);
-	nointersection |= (x1 < xBL && x2 < xBL);
-	nointersection |= (y1 > yTR && y2 > yTR);
-	nointersection |= (y1 < yBL && y2 < yBL);
-
-	return !nointersection;
 }

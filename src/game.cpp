@@ -50,24 +50,37 @@ game::game():kapalterbang1(50,getXRes()-10,50,20){
 }
 
 void game::updateControls(){
-
-	initTermios();
 	if (kbhit()){
 		char cc = getch();
-		resetTermios();
 		switch(cc){
 			default:break;
 			case 'D':
 			case 'd':
-				onRightKeyPressed();break;
+				onMoveRightKeyPressed();break;
 			case 'A':
 			case 'a':
+				onMoveLeftKeyPressed();break;
+			case 'L':
+			case 'l':
+				onRightKeyPressed();break;
+			case 'J':
+			case 'j':
 				onLeftKeyPressed();break;
-			case 'S':
-			case 's':
+			case 'Q':
+			case 'q':
+				onSwitchWeaponKeyPressed();break;
+			case 32:
 				onShootKeyPressed();break;
 		}
 	}
+}
+
+void game::onMoveRightKeyPressed() {
+	kapallaut1.moveRight();
+}
+
+void game::onMoveLeftKeyPressed() {
+	kapallaut1.moveLeft();
 }
 
 
@@ -79,17 +92,14 @@ void game::onLeftKeyPressed(){
 
 }
 
-#include <iostream>
 void game::onShootKeyPressed(){
 	bullet * newbullet = kapallaut1.shootBullet();
-
-	std::cout<< newbullet->getX1() <<std::endl;
-	std::cout<< newbullet->getY1() <<std::endl;
-	std::cout<< newbullet->getX2() <<std::endl;
-	std::cout<< newbullet->getY2() <<std::endl;
-
 	bullets.push_back(newbullet);
 	addScreenObject(newbullet);
+}
+
+void game::onSwitchWeaponKeyPressed(){
+	kapallaut1.switchShootStyle();
 }
 
 void game::updateLogic(){
@@ -128,20 +138,26 @@ void game::drawScreen(){
 }
 
 void game::init(){
+
+	initTermios();
 	initializePrinter();
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
 	addScreenObject(&kapalterbang1);
-	kapallaut newkapallaut(50,getYRes()-50,270*PI/180);
+	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);
 
 }
 
+bool game::gameOver(){
+	return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
+}
+
 void game::run(){
 	//TODO nanti harus diganti
 	init();
-	while (true /*nanti diganti*/){
+	while (!gameOver()){
 		updateControls();
 		updateLogic();
 		drawScreen();
@@ -149,6 +165,8 @@ void game::run(){
 		usleep(200);
 	}
 	finishPrinter();
+	resetTermios();
+	sleep(2);
 }
 
 void game::addScreenObject(drawable * newScreenObject){
