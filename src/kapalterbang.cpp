@@ -57,6 +57,14 @@ int kapalterbang::getHeight(){
 	return height;
 }
 
+char* kapalterbang::getColorFileName(){
+	return colorFileName;
+}
+
+void kapalterbang::setColorFileName(char* file){
+	colorFileName = file;
+}
+
 bool kapalterbang::isExploding(){
 	return exploding;
 }
