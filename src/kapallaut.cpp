@@ -18,6 +18,10 @@ kapallaut::kapallaut(int _x,int _y,int _width,int _height){
 	
 }
 */
+void kapallaut::draw(){
+	drawPicture(0,0,15,200,"ship.txt");
+}
+
 void kapallaut::draw(int x, int y){
 	drawPicture(x,y,15,200,"ship.txt");
 }
