@@ -52,7 +52,6 @@ game::game():kapalterbang1(50,getXRes()-10,50,20){
 void game::updateControls(){
 	if (kbhit()){
 		char cc = getch();
-		resetTermios();
 		switch(cc){
 			default:break;
 			case 'D':
@@ -77,15 +76,8 @@ void game::onLeftKeyPressed(){
 
 }
 
-#include <iostream>
 void game::onShootKeyPressed(){
 	bullet * newbullet = kapallaut1.shootBullet();
-
-	std::cout<< newbullet->getX1() <<std::endl;
-	std::cout<< newbullet->getY1() <<std::endl;
-	std::cout<< newbullet->getX2() <<std::endl;
-	std::cout<< newbullet->getY2() <<std::endl;
-
 	bullets.push_back(newbullet);
 	addScreenObject(newbullet);
 }
