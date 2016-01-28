@@ -24,11 +24,14 @@ class kapallaut: public drawable{
 	int width;
 	int height;
 
-	static const int bulletrelativex=0;
-	static const int bulletrelativey=0;
+	static const int bulletrelativex=15;
+	static const int bulletrelativey=40;
 
 	static const float turretTurnSpeed=PI/30;
 	float turretAngle;
+
+	//helper
+	void drawTurret();
 };
 
 #endif

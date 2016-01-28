@@ -1,5 +1,7 @@
 #include "kapallaut.h"
 #include "printchar.h"
+#include "bresenham.h"
+#include "line-pattern.h"
 
 #include <math.h>
 
@@ -28,7 +30,6 @@ bullet* kapallaut::shootBullet(){
 }
 
 void kapallaut::draw(){
-	drawPix(x,y,255,255,255,255);
 	draw(x,y);
 }
 
@@ -39,9 +40,27 @@ void kapallaut::turnTurretLeft(){
 	turretAngle-=turretTurnSpeed;
 }
 
-
 void kapallaut::draw(int x, int y){
 	drawPicture(x,y,4,200,"ship.txt","color.txt");
+	drawTurret();
+}
+
+void kapallaut::drawTurret(){
+
+	static const char gg[] = {150,140};
+	static const char alph[] = {255,255};
+	static const line_pattern cannonptr = makeLinePattern(gg,gg,gg,alph,2);
+
+	int x1 = x+bulletrelativex;
+	int length = 20;
+	int x2 = x1+length*cos(turretAngle);
+	int y1 = y + bulletrelativey;
+	int y2 = y1 +length*sin(turretAngle);
+	bresenham_drawline(x1,x2,y1,y2,cannonptr);
+	bresenham_drawline(x1+1,x2+1,y1,y2,cannonptr);
+	bresenham_drawline(x1+2,x2+2,y1,y2,cannonptr);
+	bresenham_drawline(x1-1,x2-1,y1,y2,cannonptr);
+	bresenham_drawline(x1-2,x2-2,y1,y2,cannonptr);
 }
 
 void kapallaut::move(int deltax,int deltay){
