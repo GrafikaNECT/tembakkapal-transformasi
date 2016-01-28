@@ -77,9 +77,11 @@ int finishPrinter(){
 }
 
 void drawPix(int x, int y, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha){
-        location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                   (y+vinfo.yoffset) * finfo.line_length;
-        setColor(R,G,B,alpha);
+	if (x>=0 && y>=0 && x<getXRes() && y<getYRes()){
+		location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+		           (y+vinfo.yoffset) * finfo.line_length;
+		setColor(R,G,B,alpha);
+	}
 }
 
 void drawCharpixSquare(int _x, int _y, int size, unsigned char R, unsigned char G, unsigned char B, unsigned char alpha) {
