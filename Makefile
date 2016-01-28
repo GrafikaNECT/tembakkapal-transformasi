@@ -4,6 +4,9 @@ bin/main: Makefile src/mgame.cpp src/game.cpp src/drawable.cpp src/kapalterbang.
 	cp src/ship.txt bin/ship.txt
 	cp src/plane2.txt bin/plane2.txt
 	cp src/color.txt bin/color.txt
+	cp src/planecolor1.txt bin/planecolor1.txt
+	cp src/planecolor2.txt bin/planecolor2.txt
+	cp src/planecolor3.txt bin/planecolor3.txt
 
 bin:
 	mkdir -p bin

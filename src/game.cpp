@@ -6,8 +6,6 @@
 
 #include <queue>
 
-
-
 #include <stdlib.h> 
 #include <unistd.h> 
 #include <sys/select.h> 
@@ -106,7 +104,7 @@ void game::updateLogic(){
 	
 	std::queue<int> deletequeue;
 
-	kapalterbang1.move(-1,0);
+	kapalterbang1.move(-3,0);
 	for (int i=0;i<bullets.size();i++){
 		bullets[i]->decrementLifetime();
 		if (bullets[i]->getLifetime()<=0){
@@ -129,6 +127,7 @@ void game::updateLogic(){
 		numdel++;
 	}
 }
+
 void game::drawScreen(){
 	drawCanvas(0,0,0,255);
 	for (int i=screenObjects.size()-1;i>=0;i--){

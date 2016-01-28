@@ -9,6 +9,17 @@ kapalterbang::kapalterbang(int _x,int _y){
 	width = 18*3;
 	height = 6*3;
 	exploding=false;
+	setColorFileName("planecolor1.txt");
+	draw();
+}
+
+kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
+	x=_x;
+	y=_y;
+	width = 18*3;
+	height = 6*3;
+	exploding=false;
+	setColorFileName(colorfile);
 	draw();
 }
 
@@ -18,7 +29,18 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	width=_width;
 	height=_height;
 	exploding=false;
+	setColorFileName("planecolor1.txt");
 }
+
+kapalterbang::kapalterbang(int _x,int _y,int _width,int _height,char* colorfile){
+	x=_x;
+	y=_y;
+	width=_width;
+	height=_height;
+	exploding=false;
+	setColorFileName(colorfile);
+}
+
 
 bool kapalterbang::hitBullet(bullet b){
 	return lineIntersectsSquare(
@@ -31,7 +53,7 @@ bool kapalterbang::hitBullet(bullet b){
 
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
-	drawPicture(x,y,3,200,"plane2.txt","color.txt");
+	drawPicture(x,y,3,200,"plane2.txt",colorFileName);
 	if (isExploding())drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
 	
 }

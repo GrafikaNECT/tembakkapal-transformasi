@@ -6,7 +6,9 @@
 class kapalterbang : public drawable{
 	public:
 		kapalterbang(int x,int y);
+		kapalterbang(int _x,int _y,char* colorfile);
 		kapalterbang(int x,int y,int width,int height);
+		kapalterbang(int x,int y,int width,int height,char* colorfile);
 		bool hitBullet(bullet b);
 		void draw();
 		void move(int deltax,int deltay);
