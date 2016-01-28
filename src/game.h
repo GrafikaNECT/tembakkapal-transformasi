@@ -1,8 +1,22 @@
-#include <queue>
+#include <vector>
+#include <list>
 #include "drawable.h"
+#include "bullet.h"
+#include "kapalterbang.h"
+
 class game{
 	public:
+	game();
+
+	void updateLogic();
+	void drawScreen();
+
+	void addScreenObject(drawable * newScreenObject);
 
 	protected:
-	std::priority_queue<drawable*> screenObjects;
+	std::vector<drawable*> screenObjects;
+
+	std::list<bullet> bullets;
+
+	kapalterbang kapalterbang1;
 };
