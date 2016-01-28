@@ -6,6 +6,8 @@
 kapalterbang::kapalterbang(int _x,int _y){
 	x=_x;
 	y=_y;
+	width = 18*3;
+	height = 6*3;
 	exploding=false;
 	draw();
 }
@@ -29,7 +31,7 @@ bool kapalterbang::hitBullet(bullet b){
 
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
-	drawPicture(0,0,15,200,"plane2.txt","color.txt");
+	drawPicture(x,y,3,200,"plane2.txt","color.txt");
 	if (isExploding())drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
 	
 }

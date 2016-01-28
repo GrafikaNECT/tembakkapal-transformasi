@@ -4,7 +4,7 @@
 #include "bullet.h"
 #include "printchar.h"
 #include "drawable.h"
-
+#define PI 3.14159265
 class kapallaut: public drawable{
 	public:
 	kapallaut();
@@ -27,7 +27,7 @@ class kapallaut: public drawable{
 	static const int bulletrelativex=0;
 	static const int bulletrelativey=0;
 
-	static const float turretTurnSpeed=3;
+	static const float turretTurnSpeed=PI/30;
 	float turretAngle;
 };
 
