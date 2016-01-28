@@ -66,6 +66,9 @@ void game::updateControls(){
 			case 'J':
 			case 'j':
 				onLeftKeyPressed();break;
+			case 'Q':
+			case 'q':
+				onSwitchWeaponKeyPressed();break;
 			case 32:
 				onShootKeyPressed();break;
 		}
@@ -93,6 +96,10 @@ void game::onShootKeyPressed(){
 	bullet * newbullet = kapallaut1.shootBullet();
 	bullets.push_back(newbullet);
 	addScreenObject(newbullet);
+}
+
+void game::onSwitchWeaponKeyPressed(){
+	kapallaut1.switchShootStyle();
 }
 
 void game::updateLogic(){

@@ -27,6 +27,7 @@ class game{
 	void onRightKeyPressed();
 	void onLeftKeyPressed();
 	void onShootKeyPressed();
+	void onSwitchWeaponKeyPressed();
 
 	protected:
 	std::vector<drawable*> screenObjects;

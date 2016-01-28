@@ -4,6 +4,11 @@
 #include "bullet.h"
 #include "printchar.h"
 #include "drawable.h"
+
+#include <vector>
+#include "line-pattern.h"
+
+
 #define PI 3.14159265
 class kapallaut: public drawable{
 	public:
@@ -19,6 +24,8 @@ class kapallaut: public drawable{
 	void turnTurretRight();
 	void turnTurretLeft();
 
+	void switchShootStyle();
+
 	int getHeight();
 
 	protected:
@@ -33,6 +40,10 @@ class kapallaut: public drawable{
 	static const float turretTurnSpeed=PI/30;
 	static const int shipSpeed = 5;
 	float turretAngle;
+
+	static std::vector<line_pattern> initShootStyles();
+	static const std::vector<line_pattern> shootStyles;
+	int shootStyleNum;
 
 	//helper
 	void drawTurret();

@@ -8,6 +8,7 @@
 class bullet : public drawable {
 	public:
 	bullet(int _x1,int _x2,int _y1,int _y2, int _lifetime);
+	bullet(int _x1,int _x2,int _y1,int _y2, int _lifetime,line_pattern _style);
 	void draw();
 
 	int getX1();

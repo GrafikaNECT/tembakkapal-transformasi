@@ -9,6 +9,14 @@ bullet::bullet(int _x1,int _x2,int _y1,int _y2, int _lifetime){
 	lifetime=_lifetime;
 	style = defaultStyle(140);
 }
+bullet::bullet(int _x1,int _x2,int _y1,int _y2, int _lifetime, line_pattern _style){
+	x1=_x1;
+	x2=_x2;
+	y1=_y1;
+	y2=_y2;
+	lifetime=_lifetime;
+	style = _style;
+}
 void bullet::draw(){
 	bresenham_drawline(x1,x2,y1,y2,style);
 }
