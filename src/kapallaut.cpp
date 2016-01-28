@@ -19,11 +19,11 @@ kapallaut::kapallaut(int _x,int _y,int _width,int _height){
 }
 */
 void kapallaut::draw(){
-	drawPicture(0,0,15,200,"ship.txt");
+	drawPicture(0,0,15,200,"ship.txt","color.txt");
 }
 
 void kapallaut::draw(int x, int y){
-	drawPicture(x,y,15,200,"ship.txt");
+	drawPicture(x,y,15,200,"ship.txt","color.txt");
 }
 
 void kapallaut::move(int deltax,int deltay){
