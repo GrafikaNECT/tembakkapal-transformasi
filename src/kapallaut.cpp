@@ -12,6 +12,7 @@ kapallaut::kapallaut(){x=0;y=0;width=0;height=0;turretAngle=0;}
 kapallaut::kapallaut(int _x,int _y,float _turretAngle) {
 	x=_x;
 	y=_y;
+	height = 80;
 	turretAngle=_turretAngle;
 }
 
@@ -78,4 +79,8 @@ void kapallaut::turnTurretRight() {
 void kapallaut::turnTurretLeft() {
 	if (turretAngle > (PI)+(PI/30))
 		turretAngle-=turretTurnSpeed;
+}
+
+int kapallaut::getHeight(){
+	return height;
 }

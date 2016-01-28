@@ -137,7 +137,7 @@ void game::init(){
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
 	addScreenObject(&kapalterbang1);
-	kapallaut newkapallaut(50,getYRes()-50,270*PI/180);
+	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);
 

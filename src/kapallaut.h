@@ -19,6 +19,8 @@ class kapallaut: public drawable{
 	void turnTurretRight();
 	void turnTurretLeft();
 
+	int getHeight();
+
 	protected:
 	int x;
 	int y;
