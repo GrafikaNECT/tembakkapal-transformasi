@@ -174,6 +174,15 @@ bool game::gameOver(){
 void game::run(){
 	//TODO nanti harus diganti
 	init();
+	drawCanvas(0,0,0,255);
+	drawTextCentered("GRAPHICAT",9,50,3,255,0,0,255);
+	drawTextCentered("PLANE SHOOTER",13,150,3,255,0,0,255);
+	drawTextCentered("Press A or D to move ship left or right",39,250,1,255,0,0,255);
+	drawTextCentered("Press J or L to rotate the ship turret",38,300,1,255,0,0,255);
+	drawTextCentered("Press Space to shoot",20,350,1,255,0,0,255);
+	drawTextCentered("Press Q to change weapon",24,400,1,255,0,0,255);
+	printToScreen();
+	sleep(5);
 	while (!gameOver()){
 		updateControls();
 		updateLogic();
