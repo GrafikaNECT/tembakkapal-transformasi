@@ -19,6 +19,7 @@ class kapalterbang : public drawable{
 		int getHeight();
 
 		bool isExploding();
+		bool isDead();
 		void explode();
 		void setExploding(bool b);
 		char* kapalterbang::getColorFileName();
@@ -32,6 +33,8 @@ class kapalterbang : public drawable{
 		int height;
 
 		bool exploding;
+		//bool dead;
+		int deadlifetime=-1;
 		char* colorFileName;
 
 	private:

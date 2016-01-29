@@ -9,6 +9,7 @@ kapalterbang::kapalterbang(int _x,int _y){
 	width = 18*3;
 	height = 6*3;
 	exploding=false;
+	//dead=false;
 	setColorFileName("planecolor1.txt");
 	draw();
 }
@@ -19,6 +20,7 @@ kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
 	width = 18*3;
 	height = 6*3;
 	exploding=false;
+	//dead=false;
 	setColorFileName(colorfile);
 	draw();
 }
@@ -29,6 +31,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	width=_width;
 	height=_height;
 	exploding=false;
+	//dead=false;
 	setColorFileName("planecolor1.txt");
 }
 
@@ -38,6 +41,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height,char* colorfile)
 	width=_width;
 	height=_height;
 	exploding=false;
+	//dead=false;
 	setColorFileName(colorfile);
 }
 
@@ -53,15 +57,23 @@ bool kapalterbang::hitBullet(bullet b){
 
 void kapalterbang::draw(){
 	//TODO nanti harus diganti
-	drawPicture(x,y,3,200,"plane2.txt",colorFileName);
-	if (isExploding())
-		drawPicture(getX(),getY(),3,200,"explosion.txt","explosioncolor.txt");
+	if (!isDead()) {
+		if (isExploding()) {
+			drawPicture(getX(),getY(),3,200,"explosion.txt","explosioncolor.txt");
+			deadlifetime--;
+		} else {
+			drawPicture(x,y,3,200,"plane2.txt",colorFileName);
+		}
+	}
 		//drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
 	
 }
 
 void kapalterbang::move(int deltax,int deltay){
-	x+=deltax;
+	if (x+deltax<0) 
+		x=getXRes();
+	else
+		x+=deltax;
 	y+=deltay;
 }
 
@@ -97,8 +109,15 @@ void kapalterbang::setExploding(bool b){
 	exploding=b;
 }
 
+bool kapalterbang::isDead() {
+	return (deadlifetime==0);
+}
+
 void kapalterbang::explode(){
-	setExploding(true);
+	if (!isDead()) {
+		setExploding(true);
+		deadlifetime=3;
+	}
 }
 
 	//fungsi helper

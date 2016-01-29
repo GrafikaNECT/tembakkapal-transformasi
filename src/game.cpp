@@ -104,9 +104,9 @@ void game::updateLogic(){
 	
 	std::queue<int> deletequeue;
 
-	kapalterbang1.move(-3,0);
-	kapalterbang2.move(-2,0);
-	kapalterbang3.move(-1,0);
+	if (!kapalterbang1.isDead()) kapalterbang1.move(-3,0);
+	if (!kapalterbang2.isDead()) kapalterbang2.move(-2,0);
+	if (!kapalterbang3.isDead()) kapalterbang3.move(-1,0);
 
 	for (int i=0;i<bullets.size();i++){
 		bullets[i]->decrementLifetime();
@@ -115,12 +115,15 @@ void game::updateLogic(){
 		}
 		if (kapalterbang1.hitBullet(*bullets[i])){
 			kapalterbang1.explode();
+			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang1));
 		}
 		if (kapalterbang2.hitBullet(*bullets[i])){
 			kapalterbang2.explode();
-		}
+			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang2));
+		}	
 		if (kapalterbang3.hitBullet(*bullets[i])){
 			kapalterbang3.explode();
+			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang3));
 		}
 	}
 
@@ -165,7 +168,8 @@ void game::init(){
 }
 
 bool game::gameOver(){
-	return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
+	//return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
+	return (kapalterbang1.isDead() && kapalterbang2.isDead() && kapalterbang3.isDead());
 }
 
 void game::run(){
@@ -179,7 +183,7 @@ void game::run(){
 		usleep(200);
 	}
 	usleep(500);
-	drawTextCentered("GAME OVER",9,300,5,255,0,0,255);
+	drawTextCentered("YOU WIN",7,300,5,255,0,0,255);
 	printToScreen();
 	usleep(500);
 
