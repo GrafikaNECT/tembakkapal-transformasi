@@ -168,7 +168,6 @@ void game::init(){
 }
 
 bool game::gameOver(){
-	//return kapalterbang1.isExploding() || kapalterbang1.getX()<0;
 	return (kapalterbang1.isDead() && kapalterbang2.isDead() && kapalterbang3.isDead());
 }
 
