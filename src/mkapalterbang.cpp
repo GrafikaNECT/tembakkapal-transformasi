@@ -1,5 +1,5 @@
 #include "kapalterbang.h"
-#include "printchar.h"
+#include "print.h"
 #include "char.h"
 #include <stdlib.h>
 #include <unistd.h>

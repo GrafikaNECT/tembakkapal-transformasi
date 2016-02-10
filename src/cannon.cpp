@@ -1,5 +1,5 @@
 #include "cannon.h"
-#include "printchar.h"
+#include "print.h"
 #include <math.h>
 
 using namespace std;

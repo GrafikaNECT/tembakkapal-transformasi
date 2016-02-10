@@ -1,8 +1,9 @@
 #include "game.h"
-#include "printchar.h"
+#include "print.h"
 
 #include <unistd.h>
 #include <algorithm>
+#include <iostream>
 
 #include <queue>
 
@@ -44,7 +45,12 @@ char getch(){
 //TODO ini belum selesai!!!
 
 game::game():kapalterbang1(50,getXRes()-10,50,20),kapalterbang2(50,getXRes()-5,50,20),kapalterbang3(50,getXRes()-5,50,20){
-	
+	//load alphabet
+	ifstream alphabetfile;
+	alphabetfile.open("alphabet-2.txt");
+	alphabet a1(alphabetfile);
+	alphabet2= a1;
+	alphabetfile.close();
 }
 
 void game::updateControls(){
@@ -181,12 +187,12 @@ void game::run(){
 	//TODO nanti harus diganti
 	init();
 	drawCanvas(0,0,0,255);
-	drawTextCentered("GRAPHICAT",9,50,3,255,0,0,255);
-	drawTextCentered("PLANE SHOOTER",13,150,3,255,0,0,255);
-	drawTextCentered("Press A or D to move ship left or right",39,250,1,255,0,0,255);
-	drawTextCentered("Press J or L to rotate the ship turret",38,300,1,255,0,0,255);
-	drawTextCentered("Press Space to shoot",20,350,1,255,0,0,255);
-	drawTextCentered("Press Q to change weapon",24,400,1,255,0,0,255);
+	alphabet2.drawTextCentered("GRAPHICAT",50,3,255,0,0,255);
+	alphabet2.drawTextCentered("PLANE SHOOTER",150,3,255,0,0,255);
+	alphabet2.drawTextCentered("PRESS A OR D TO MOVE SHIP LEFT OR RIGHT",250,1,255,0,0,255);
+	alphabet2.drawTextCentered("PRESS J OR L TO ROTATE THE SHIP TURRET",300,1,255,0,0,255);
+	alphabet2.drawTextCentered("PRESS SPACE TO SHOOT",350,1,255,0,0,255);
+	alphabet2.drawTextCentered("PRESS Q TO CHANGE WEAPON",400,1,255,0,0,255);
 	printToScreen();
 	sleep(5);
 	while (!gameOver()){
@@ -197,7 +203,7 @@ void game::run(){
 		usleep(200);
 	}
 	usleep(500);
-	drawTextCentered("YOU WIN",7,300,5,255,0,0,255);
+	alphabet2.drawTextCentered("YOU WIN",300,5,255,0,0,255);
 	printToScreen();
 	usleep(500);
 

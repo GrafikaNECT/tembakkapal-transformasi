@@ -1,5 +1,5 @@
 #include "cannon.h"
-#include "printchar.h"
+#include "print.h"
 
 int main() {
 	if (initializePrinter()!=0) return 0;

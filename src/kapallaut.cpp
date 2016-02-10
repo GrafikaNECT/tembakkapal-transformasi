@@ -1,7 +1,8 @@
 #include "kapallaut.h"
-#include "printchar.h"
+#include "print.h"
 #include "bresenham.h"
 #include "line-pattern.h"
+#include "drawBitPicture-old.h"
 
 #include <math.h>
 

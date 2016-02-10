@@ -1,7 +1,8 @@
 #include "kapalterbang.h"
 #include "line-pattern.h"
 #include "bresenham.h"
-#include "printchar.h"
+#include "print.h"
+#include "drawBitPicture-old.h"
 
 kapalterbang::kapalterbang(int _x,int _y){
 	x=_x;

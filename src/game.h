@@ -8,6 +8,7 @@
 #include "bullet.h"
 #include "kapalterbang.h"
 #include "kapallaut.h"
+#include "alphabet.h"
 
 class game{
 	public:
@@ -43,6 +44,9 @@ class game{
 	kapalterbang kapalterbang3;
 
 	kapallaut kapallaut1;
+
+	//menggambar tulisan
+	alphabet alphabet2;
 
 };
 

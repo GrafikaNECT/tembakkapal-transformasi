@@ -1,5 +1,5 @@
 #include "line-pattern.h"
-#include "printchar.h"
+#include "print.h"
 #include <unistd.h>
 
 line_pattern patternA;

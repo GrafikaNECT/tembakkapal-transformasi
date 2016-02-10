@@ -1,5 +1,5 @@
 #include "line-pattern.h"
-#include "printchar.h"
+#include "print.h"
 
 line_pattern makeLinePattern(
 	unsigned char * R,

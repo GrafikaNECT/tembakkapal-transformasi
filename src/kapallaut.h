@@ -2,7 +2,7 @@
 #define kapallaut_h
 
 #include "bullet.h"
-#include "printchar.h"
+#include "print.h"
 #include "drawable.h"
 
 #include <vector>
