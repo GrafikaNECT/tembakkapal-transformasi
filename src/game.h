@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "drawable.h"
+#include "movingObject.h"
 #include "bullet.h"
 #include "kapalterbang.h"
 #include "kapallaut.h"
@@ -31,6 +32,7 @@ class game{
 
 	protected:
 	std::vector<drawable*> screenObjects;
+	std::vector<movingObject*> movingObjects;
 
 	std::vector<bullet*> bullets;
 

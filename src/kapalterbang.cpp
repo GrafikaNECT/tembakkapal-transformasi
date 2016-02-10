@@ -77,6 +77,11 @@ void kapalterbang::move(int deltax,int deltay){
 	y+=deltay;
 }
 
+void kapalterbang::oneFrameMove(){
+	if (!isDead())
+		move(-getMoveSpeed(),0);
+}
+
 int kapalterbang::getX(){
 	return x;
 }
@@ -130,4 +135,11 @@ bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL,
 	}
 	return false;
 
+}
+
+void kapalterbang::setMoveSpeed(int v){
+	moveSpeed=v;
+}
+int kapalterbang::getMoveSpeed(){
+	return moveSpeed;
 }

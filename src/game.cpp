@@ -104,9 +104,9 @@ void game::updateLogic(){
 	
 	std::queue<int> deletequeue;
 
-	if (!kapalterbang1.isDead()) kapalterbang1.move(-3,0);
-	if (!kapalterbang2.isDead()) kapalterbang2.move(-2,0);
-	if (!kapalterbang3.isDead()) kapalterbang3.move(-1,0);
+	for (int i=0;i<movingObjects.size();i++){
+		movingObjects[i]->oneFrameMove();
+	}
 
 	for (int i=0;i<bullets.size();i++){
 		bullets[i]->decrementLifetime();
@@ -154,13 +154,19 @@ void game::init(){
 	initializePrinter();
 	kapalterbang newkapal(getXRes(),50,50,20);
 	kapalterbang1 = newkapal;
+	kapalterbang1.setMoveSpeed(1);
 	addScreenObject(&kapalterbang1);
+	movingObjects.push_back(&kapalterbang1);
 	kapalterbang newkapal2(getXRes(),50,50,20,"planecolor2.txt");
 	kapalterbang2 = newkapal2;
+	kapalterbang2.setMoveSpeed(2);
 	addScreenObject(&kapalterbang2);
+	movingObjects.push_back(&kapalterbang2);
 	kapalterbang newkapal3(getXRes(),50,50,20,"planecolor3.txt");
 	kapalterbang3 = newkapal3;
+	kapalterbang3.setMoveSpeed(3);
 	addScreenObject(&kapalterbang3);
+	movingObjects.push_back(&kapalterbang3);
 	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);

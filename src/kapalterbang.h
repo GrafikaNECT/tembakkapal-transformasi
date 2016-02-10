@@ -2,8 +2,10 @@
 #define kapalterbang_h
 
 #include "bullet.h"
+#include "drawable.h"
+#include "movingObject.h"
 
-class kapalterbang : public drawable{
+class kapalterbang : public drawable, public movingObject{
 	public:
 		kapalterbang(int x,int y);
 		kapalterbang(int _x,int _y,char* colorfile);
@@ -12,6 +14,8 @@ class kapalterbang : public drawable{
 		bool hitBullet(bullet b);
 		void draw();
 		void move(int deltax,int deltay);
+
+		void oneFrameMove();
 
 		int getX();
 		int getY();
@@ -22,8 +26,11 @@ class kapalterbang : public drawable{
 		bool isDead();
 		void explode();
 		void setExploding(bool b);
-		char* kapalterbang::getColorFileName();
-		void kapalterbang::setColorFileName(char* file);
+		char* getColorFileName();
+		void setColorFileName(char* file);
+
+		void setMoveSpeed(int v);
+		int getMoveSpeed();
 
 
 	protected:
@@ -31,6 +38,9 @@ class kapalterbang : public drawable{
 		int y;
 		int width;
 		int height;
+
+		//kecepatan bergerak
+		int moveSpeed;
 
 		bool exploding;
 		//bool dead;
