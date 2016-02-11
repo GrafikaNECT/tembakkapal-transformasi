@@ -4,6 +4,7 @@
 #include "print.h"
 #include "drawBitPicture-old.h"
 #include "polygon.h"
+#include <cmath>
 
 kapalterbang::kapalterbang(int _x,int _y){
 	startX=_x;
@@ -102,7 +103,20 @@ void kapalterbang::oneFrameMove(){
 			y=startY;
 			scale=0;
 		}
-
+		
+		//gerakin baling-baling
+		if (balingbalingkiriAttached){
+			balingbalingkiri->setX(getX()+balingbalingkiriX*scale);
+			balingbalingkiri->setY(getY()+balingbalingkiriY*scale);
+			balingbalingkiri->setScale(scale);
+			balingbalingkiri -> setRotateSpeed((getMoveSpeedX()+getMoveSpeedY()+getScaleSpeed())*5);
+		}
+		if (balingbalingkananAttached){
+			balingbalingkanan->setX(getX()+balingbalingkananX*scale);
+			balingbalingkanan->setY(getY()+balingbalingkananY*scale);
+			balingbalingkanan->setScale(scale);
+			balingbalingkanan -> setRotateSpeed((getMoveSpeedX()+getMoveSpeedY()+getScaleSpeed())*5);
+		}
 	}
 }
 
@@ -146,6 +160,8 @@ void kapalterbang::explode(){
 	if (!isDead()) {
 		setExploding(true);
 		deadlifetime=3;
+		detachkiri();
+		detachkanan();
 	}
 }
 
@@ -181,4 +197,28 @@ void kapalterbang::setScaleSpeed(float v){
 
 float kapalterbang::getScaleSpeed(){
 	return scaleSpeed;
+}
+
+void kapalterbang::attachkiri(balingbaling * b, int relativex, int relativey){
+	b->attach();
+	balingbalingkiri = b;
+	balingbalingkiriX=relativex;
+	balingbalingkiriY=relativey;
+	balingbalingkiriAttached = true;
+}
+void kapalterbang::attachkanan(balingbaling * b, int relativex, int relativey){
+	b->attach();
+	balingbalingkanan = b;
+	balingbalingkananX=relativex;
+	balingbalingkananY=relativey;
+	balingbalingkananAttached = true;
+}
+
+void kapalterbang::detachkiri(){
+	balingbalingkiri->detach(-getMoveSpeedX(),-getMoveSpeedY());
+	balingbalingkiriAttached = false;
+}
+void kapalterbang::detachkanan(){
+	balingbalingkanan->detach(-getMoveSpeedX(),-getMoveSpeedY());
+	balingbalingkananAttached = false;
 }

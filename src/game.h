@@ -21,6 +21,7 @@ class game{
 
 	void init();
 	void run();
+	void finalize();
 
 	void addScreenObject(drawable * newScreenObject);
 
@@ -44,6 +45,8 @@ class game{
 	kapalterbang kapalterbang3;
 
 	kapallaut kapallaut1;
+
+	std::vector<balingbaling*> balingbalings;
 
 	//menggambar tulisan
 	alphabet alphabet2;

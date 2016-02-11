@@ -4,6 +4,7 @@
 #include "bullet.h"
 #include "drawable.h"
 #include "movingObject.h"
+#include "balingbaling.h"
 
 class kapalterbang : public drawable, public movingObject{
 	public:
@@ -36,6 +37,12 @@ class kapalterbang : public drawable, public movingObject{
 		void setScaleSpeed(float v);
 		float getScaleSpeed();
 
+		void attachkiri(balingbaling * b, int relativex, int relativey);
+		void attachkanan(balingbaling * b, int relativex, int relativey);
+
+		void detachkiri();
+		void detachkanan();
+
 
 	protected:
 		int startX;
@@ -55,6 +62,16 @@ class kapalterbang : public drawable, public movingObject{
 		//bool dead;
 		int deadlifetime=-1;
 		char* colorFileName;
+
+		bool balingbalingkiriAttached;
+		bool balingbalingkananAttached;
+		balingbaling * balingbalingkiri;
+		balingbaling * balingbalingkanan;
+
+		int balingbalingkiriX;
+		int balingbalingkiriY;
+		int balingbalingkananX;
+		int balingbalingkananY;
 
 	private:
 		//fungsi helper

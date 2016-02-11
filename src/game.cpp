@@ -155,7 +155,7 @@ void game::drawScreen(){
 }
 
 void game::init(){
-
+	balingbaling * b;
 	initTermios();
 	initializePrinter();
 	kapalterbang newkapal(getXRes(),200,50,20);
@@ -165,6 +165,19 @@ void game::init(){
 	kapalterbang1.setScaleSpeed(0.01);
 	addScreenObject(&kapalterbang1);
 	movingObjects.push_back(&kapalterbang1);
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang1.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang1.attachkanan(b,40,10);
+
 	kapalterbang newkapal2(getXRes(),200,50,20,"planecolor2.txt");
 	kapalterbang2 = newkapal2;
 	kapalterbang2.setMoveSpeedX(3);
@@ -172,6 +185,20 @@ void game::init(){
 	kapalterbang2.setScaleSpeed(0.01);
 	addScreenObject(&kapalterbang2);
 	movingObjects.push_back(&kapalterbang2);
+
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang2.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang2.attachkanan(b,40,10);
+
 	kapalterbang newkapal3(getXRes(),200,50,20,"planecolor3.txt");
 	kapalterbang3 = newkapal3;
 	kapalterbang3.setMoveSpeedX(4);
@@ -179,10 +206,30 @@ void game::init(){
 	kapalterbang3.setScaleSpeed(0.01);
 	addScreenObject(&kapalterbang3);
 	movingObjects.push_back(&kapalterbang3);
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang3.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang3.attachkanan(b,40,10);
+
+
 	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);
 
+}
+
+void game::finalize(){
+	for (int i=0;i<balingbalings.size();i++){
+		delete balingbalings[i];
+	}
 }
 
 bool game::gameOver(){
@@ -216,6 +263,7 @@ void game::run(){
 	finishPrinter();
 	resetTermios();
 	sleep(2);
+	finalize();
 }
 
 void game::addScreenObject(drawable * newScreenObject){
