@@ -23,15 +23,15 @@ void balingbaling::draw(){
 	protate.draw(x,y,255,255,0,255,true);
 
 	// Satu baling-baling atas
-	t0x = 0; t0y = 0;
-	t1x = width/12 * scale;
-	t1y = height/10 * scale;
-	t2x = width/6 * scale;
-	t2y = 3 * height/10 * scale;
-	t3x = width/12 * scale;
-	t3y = 4 * height/10 * scale;
-	t4x = 0;
-	t4y = height/2 * scale;
+	int t0x = 0; int t0y = 0;
+	int t1x = width/12 * scale;
+	int t1y = height/10 * scale;
+	int t2x = width/6 * scale;
+	int t2y = 3 * height/10 * scale;
+	int t3x = width/12 * scale;
+	int t3y = 4 * height/10 * scale;
+	int t4x = 0;
+	int t4y = height/2 * scale;
 
 	polygon p1;
 	p1.push_back(t0x, t0y);
