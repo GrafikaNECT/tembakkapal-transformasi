@@ -38,6 +38,7 @@ class kapalterbang : public drawable, public movingObject{
 		int y;
 		int width;
 		int height;
+		float scale;
 
 		//kecepatan bergerak
 		int moveSpeed;
