@@ -119,15 +119,36 @@ void game::updateLogic(){
 		if (bullets[i]->getLifetime()<=0){
 			deletequeue.push(i);
 		}
-		if (kapalterbang1.hitBullet(*bullets[i])){
+		if (!kapalterbang1.isExploding()
+			&& kapalterbang1.hitBullet(*bullets[i])){
 			kapalterbang1.explode();
+			person * p = new person();
+			p -> setX(kapalterbang1.getX());
+			p -> setY(kapalterbang1.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang1));
 		}
-		if (kapalterbang2.hitBullet(*bullets[i])){
+		if (!kapalterbang2.isExploding()
+			&& kapalterbang2.hitBullet(*bullets[i])){
+			person * p = new person();
+			p -> setX(kapalterbang2.getX());
+			p -> setY(kapalterbang2.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			kapalterbang2.explode();
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang2));
 		}	
-		if (kapalterbang3.hitBullet(*bullets[i])){
+		if (!kapalterbang3.isExploding()
+			&& kapalterbang3.hitBullet(*bullets[i])){
+			person * p = new person();
+			p -> setX(kapalterbang3.getX());
+			p -> setY(kapalterbang3.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			kapalterbang3.explode();
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang3));
 		}
@@ -229,6 +250,9 @@ void game::init(){
 void game::finalize(){
 	for (int i=0;i<balingbalings.size();i++){
 		delete balingbalings[i];
+	}
+	for (int i=0;i<people.size();i++){
+		delete people[i];
 	}
 }
 
