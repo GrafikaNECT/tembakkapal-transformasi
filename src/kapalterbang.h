@@ -29,11 +29,17 @@ class kapalterbang : public drawable, public movingObject{
 		char* getColorFileName();
 		void setColorFileName(char* file);
 
-		void setMoveSpeed(int v);
-		int getMoveSpeed();
+		void setMoveSpeedY(int v);
+		int getMoveSpeedY();
+		void setMoveSpeedX(int v);
+		int getMoveSpeedX();
+		void setScaleSpeed(float v);
+		float getScaleSpeed();
 
 
 	protected:
+		int startX;
+		int startY;
 		int x;
 		int y;
 		int width;
@@ -41,7 +47,9 @@ class kapalterbang : public drawable, public movingObject{
 		float scale;
 
 		//kecepatan bergerak
-		int moveSpeed;
+		int moveSpeedX;
+		int moveSpeedY;
+		float scaleSpeed;
 
 		bool exploding;
 		//bool dead;

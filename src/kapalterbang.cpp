@@ -3,8 +3,11 @@
 #include "bresenham.h"
 #include "print.h"
 #include "drawBitPicture-old.h"
+#include "polygon.h"
 
 kapalterbang::kapalterbang(int _x,int _y){
+	startX=_x;
+	startY=_y;
 	x=_x;
 	y=_y;
 	width = 18*3;
@@ -16,6 +19,8 @@ kapalterbang::kapalterbang(int _x,int _y){
 }
 
 kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
+	startX=_x;
+	startY=_y;
 	x=_x;
 	y=_y;
 	width = 18*3;
@@ -27,6 +32,8 @@ kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
 }
 
 kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
+	startX=_x;
+	startY=_y;
 	x=_x;
 	y=_y;
 	width=_width;
@@ -37,6 +44,8 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 }
 
 kapalterbang::kapalterbang(int _x,int _y,int _width,int _height,char* colorfile){
+	startX=_x;
+	startY=_y;
 	x=_x;
 	y=_y;
 	width=_width;
@@ -53,7 +62,7 @@ bool kapalterbang::hitBullet(bullet b){
 		b.getY1(),
 		b.getX2(),
 		b.getY2(),
-		x,y,x+width,y+height);
+		x,y,x+width*scale,y+height*scale);
 }
 
 void kapalterbang::draw(){
@@ -63,7 +72,16 @@ void kapalterbang::draw(){
 			drawPicture(getX(),getY(),3,200,"explosion.txt","explosioncolor.txt");
 			deadlifetime--;
 		} else {
-			drawPicture(x,y,3,200,"plane2.txt",colorFileName);
+			//drawPicture(x,y,3,200,"plane2.txt",colorFileName);
+			//ini kotak dummy
+			polygon p;
+			p.push_back(0,0);
+			p.push_back(width,0);
+			p.push_back(width,height);
+			p.push_back(0,height);
+
+			polygon pdraw = p.hasilSkala(scale,scale);
+			pdraw.draw(x,y,255,255,255,255,true);
 		}
 	}
 		//drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
@@ -71,16 +89,21 @@ void kapalterbang::draw(){
 }
 
 void kapalterbang::move(int deltax,int deltay){
-	if (x+deltax<0) 
-		x=getXRes();
-	else
-		x+=deltax;
+	x+=deltax;
 	y+=deltay;
 }
 
 void kapalterbang::oneFrameMove(){
-	if (!isDead())
-		move(-getMoveSpeed(),0);
+	if (!isDead()){
+		move(-getMoveSpeedX(),-getMoveSpeedY());
+		scale+=scaleSpeed;
+		if (x<-width*scale||y<-height*scale){
+			x=startX;
+			y=startY;
+			scale=0;
+		}
+
+	}
 }
 
 int kapalterbang::getX(){
@@ -138,9 +161,24 @@ bool kapalterbang::lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL,
 
 }
 
-void kapalterbang::setMoveSpeed(int v){
-	moveSpeed=v;
+void kapalterbang::setMoveSpeedY(int v){
+	moveSpeedY=v;
 }
-int kapalterbang::getMoveSpeed(){
-	return moveSpeed;
+int kapalterbang::getMoveSpeedY(){
+	return moveSpeedY;
+}
+
+void kapalterbang::setMoveSpeedX(int v){
+	moveSpeedX=v;
+}
+int kapalterbang::getMoveSpeedX(){
+	return moveSpeedX;
+}
+
+void kapalterbang::setScaleSpeed(float v){
+	scaleSpeed = v;
+}
+
+float kapalterbang::getScaleSpeed(){
+	return scaleSpeed;
 }
