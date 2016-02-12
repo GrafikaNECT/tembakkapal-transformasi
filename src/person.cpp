@@ -33,6 +33,8 @@ void person::draw(){
 	bodyrotate.draw(x,y,245,214,164,255,false);
 	polygon shirtrotate = shirt.hasilRotasi(rotateDegree);
 	shirtrotate.draw(x,y,255,0,0,255,false);
+	polygon pantsrotate = pants.hasilRotasi(rotateDegree);
+	pantsrotate.draw(x,y,0,0,255,255,false);
 }
 
 void person::gravity_accelerate(){
@@ -130,4 +132,12 @@ void person::initShape() {
 	shirt.push_back(36,23);
 	shirt.push_back(31,21);
 
+	pants.push_back(21,30);
+	pants.push_back(20,35);
+	pants.push_back(25,35);
+	pants.push_back(26,33);
+	pants.push_back(27,33);
+	pants.push_back(28,35);
+	pants.push_back(33,35);
+	pants.push_back(32,30);
 }
