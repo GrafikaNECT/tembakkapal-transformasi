@@ -35,9 +35,9 @@ class person : public drawable, public movingObject {
 //	line belum ada. fathul udah bikin tapi point-nya agak beda gitu jadi harus disesuaikan
 
 //terkait pergerakan
-	static const float miring_xnambah_coeff = 0.7;
-	static const int gravity_accel=1;
-	static const int maxYSpeed = 10;
+	static const float miring_xnambah_coeff = 0.4;
+	static const int gravity_accel=0.3;
+	static const int maxYSpeed = 3;
 	static const float osc_coeff = 10;
 	static const float osc_damp_coeff = 0.1;
 	int xSpeed;
@@ -53,6 +53,8 @@ class person : public drawable, public movingObject {
 	void changeMiring();
 
 	void move();
+
+	void initShape();
 
 	static std::default_random_engine rd;
 	static std::normal_distribution<double> rotateDegreeRandomGenerator;
