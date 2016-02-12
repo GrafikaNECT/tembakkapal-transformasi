@@ -5,6 +5,7 @@
 #include "drawable.h"
 #include "movingObject.h"
 #include "balingbaling.h"
+#include "polygon.h"
 
 class kapalterbang : public drawable, public movingObject{
 	public:
@@ -73,9 +74,13 @@ class kapalterbang : public drawable, public movingObject{
 		int balingbalingkananX;
 		int balingbalingkananY;
 
+		polygon body;
+		polygon window;
+
 	private:
 		//fungsi helper
 		bool lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR);
+		void initShape();
 };
 
 #endif

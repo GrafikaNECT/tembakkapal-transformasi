@@ -15,6 +15,7 @@ kapalterbang::kapalterbang(int _x,int _y){
 	height = 6*3;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName("planecolor1.txt");
 	draw();
 }
@@ -28,6 +29,7 @@ kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
 	height = 6*3;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName(colorfile);
 	draw();
 }
@@ -41,6 +43,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	height=_height;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName("planecolor1.txt");
 }
 
@@ -53,6 +56,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height,char* colorfile)
 	height=_height;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName(colorfile);
 }
 
@@ -74,48 +78,9 @@ void kapalterbang::draw(){
 			deadlifetime--;
 		} else {
 			//drawPicture(x,y,3,200,"plane2.txt",colorFileName);
-			//ini kotak dummy
-			polygon p;
-			/*p.push_back(0,0);
-			p.push_back(width,0);
-			p.push_back(width,height);
-			p.push_back(0,height);*/
-
-			p.push_back(19,0);
-			p.push_back(19,5);
-			p.push_back(18,6);
-			p.push_back(10,6);
-			p.push_back(17,7);
-			p.push_back(16,9);
-			p.push_back(15,10);
-			p.push_back(14,11);
-			p.push_back(0,11);
-			p.push_back(14,13);
-			p.push_back(15,14);
-			p.push_back(17,15);
-			p.push_back(19,16);
-			p.push_back(20,16);
-			p.push_back(22,15);
-			p.push_back(24,14);
-			p.push_back(25,13);
-			p.push_back(39,11);
-			p.push_back(25,11);
-			p.push_back(24,10);
-			p.push_back(23,9);
-			p.push_back(22,7);
-			p.push_back(29,6);
-			p.push_back(21,6);
-			p.push_back(20,5);
-			p.push_back(20,0);
-
-			polygon window;
-			window.push_back(18,9);
-			window.push_back(16,10);
-			window.push_back(23,10);
-			window.push_back(21,9);
-			polygon pdraw = p.hasilSkala(scale,scale);
+			polygon bodydraw = body.hasilSkala(scale,scale);
 			polygon windraw = window.hasilSkala(scale,scale);
-			pdraw.draw(x,y,255,255,255,255,false);
+			bodydraw.draw(x,y,255,255,255,255,false);
 			windraw.draw(x,y,0,0,0,255,false);
 
 
@@ -257,4 +222,37 @@ void kapalterbang::detachkiri(){
 void kapalterbang::detachkanan(){
 	balingbalingkanan->detach(-getMoveSpeedX(),-getMoveSpeedY());
 	balingbalingkananAttached = false;
+}
+
+void kapalterbang::initShape() {
+	body.push_back(19,0);
+	body.push_back(19,5);
+	body.push_back(18,6);
+	body.push_back(10,6);
+	body.push_back(17,7);
+	body.push_back(16,9);
+	body.push_back(15,10);
+	body.push_back(14,11);
+	body.push_back(0,11);
+	body.push_back(14,13);
+	body.push_back(15,14);
+	body.push_back(17,15);
+	body.push_back(19,16);
+	body.push_back(20,16);
+	body.push_back(22,15);
+	body.push_back(24,14);
+	body.push_back(25,13);
+	body.push_back(39,11);
+	body.push_back(25,11);
+	body.push_back(24,10);
+	body.push_back(23,9);
+	body.push_back(22,7);
+	body.push_back(29,6);
+	body.push_back(21,6);
+	body.push_back(20,5);
+	body.push_back(20,0);
+	window.push_back(18,9);
+	window.push_back(16,10);
+	window.push_back(23,10);
+	window.push_back(21,9);	
 }
