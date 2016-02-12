@@ -179,7 +179,7 @@ void game::init(){
 	balingbaling * b;
 	initTermios();
 	initializePrinter();
-	kapalterbang newkapal(getXRes(),getYRes()/2,50,20);
+	kapalterbang newkapal(getXRes(),getYRes()/2,40,18);
 	kapalterbang1 = newkapal;
 	kapalterbang1.setMoveSpeedX(1);
 	kapalterbang1.setMoveSpeedY(1);
@@ -199,7 +199,7 @@ void game::init(){
 	addScreenObject(b);
 	kapalterbang1.attachkanan(b,40,10);
 
-	kapalterbang newkapal2(getXRes(),getYRes()/2,50,20,"planecolor2.txt");
+	kapalterbang newkapal2(getXRes(),getYRes()/2,40,18,"planecolor2.txt");
 	kapalterbang2 = newkapal2;
 	kapalterbang2.setMoveSpeedX(3);
 	kapalterbang2.setMoveSpeedY(1);
@@ -220,7 +220,7 @@ void game::init(){
 	addScreenObject(b);
 	kapalterbang2.attachkanan(b,40,10);
 
-	kapalterbang newkapal3(getXRes(),getYRes()/2,50,20,"planecolor3.txt");
+	kapalterbang newkapal3(getXRes(),getYRes()/2,40,18,"planecolor3.txt");
 	kapalterbang3 = newkapal3;
 	kapalterbang3.setMoveSpeedX(5);
 	kapalterbang3.setMoveSpeedY(3);
