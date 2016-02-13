@@ -1,6 +1,8 @@
 #include "balingbaling.h"
 #include "polygon.h"
 
+#include <chrono>
+
 //bila di-attach, akan diset oleh pesawat
 void balingbaling::setX(int _x){x=_x;}
 void balingbaling::setY(int _y){y=_y;}
@@ -63,6 +65,10 @@ void balingbaling::attach(){
 }
 void balingbaling::detach(int _xSpeed, int _ySpeed){
 	attached = false;
-	xSpeed = _xSpeed;
-	ySpeed = _ySpeed;
+	xSpeed = _xSpeed+speedRandomGenerator(rd)/3;
+	ySpeed = _ySpeed+speedRandomGenerator(rd)/3;
+	rotateSpeed += speedRandomGenerator(rd);
 }
+
+static std::default_random_engine balingbaling::rd(std::chrono::system_clock::now().time_since_epoch().count());
+static std::normal_distribution<double> balingbaling::speedRandomGenerator(0,5);

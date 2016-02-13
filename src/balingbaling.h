@@ -4,6 +4,8 @@
 #include "drawable.h"
 #include "movingObject.h"
 
+#include <random>
+
 class balingbaling: public drawable, public movingObject{
 	public:
 
@@ -40,6 +42,11 @@ class balingbaling: public drawable, public movingObject{
 	int xSpeed;
 	int ySpeed;
 	static const int fallaccel = 1;
+
+	//randomisasi
+	static std::default_random_engine rd;
+	static std::normal_distribution<double> speedRandomGenerator;
+
 
 };
 
