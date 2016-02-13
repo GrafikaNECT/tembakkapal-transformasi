@@ -43,13 +43,15 @@ void person::gravity_accelerate(){
 
 void person::drag(){
 	if (ySpeed>maxYSpeed*cos(rotateDegree)) ySpeed = maxYSpeed;
-	xSpeed-=miring_xnambah_coeff*ySpeed*sin(rotateDegree);
+	if (xSpeed>maxXSpeed) xSpeed = maxXSpeed;
+	if (xSpeed < -maxXSpeed) xSpeed = -maxXSpeed;
+	xSpeed+=miring_xnambah_coeff*ySpeed*sin(rotateDegree);
 }
 
 void person::changeMiring(){
-	rotateDegreeAccel=-osc_coeff*sin(rotateDegree)-osc_damp_coeff*rotateDegreeSpeed;
-	rotateDegreeSpeed+=rotateDegreeAccel;
 	rotateDegree+=rotateDegreeSpeed;
+	rotateDegreeSpeed+=rotateDegreeAccel;
+	rotateDegreeAccel=-osc_coeff*sin(rotateDegree)-osc_damp_coeff*rotateDegreeSpeed;
 
 	//pengaman
 	if (rotateDegree>maxDegree){
