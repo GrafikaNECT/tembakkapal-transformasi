@@ -35,11 +35,19 @@ void Circle::plot4points(int x, int y, bool half, bool solid) {
 			drawPix(getCenterPoint().getX()-x, getCenterPoint().getY()+y, R, G, B, alpha);
 		}
 	} else { // Harusnya pake bressenham line
-		drawPix(getCenterPoint().getX()+x, getCenterPoint().getY()-y, R, G, B, alpha);
-		drawPix(getCenterPoint().getX()-x, getCenterPoint().getY()-y, R, G, B, alpha);
+		line_pattern allBlack;
+
+		unsigned char AllBlackR [] ={R};
+		unsigned char AllBlackG[] ={G};
+		unsigned char AllBlackB[] ={B};
+		unsigned char AllBlackA[] ={alpha};
+
+		allBlack = makeLinePattern(AllBlackR,AllBlackG,AllBlackB,AllBlackA,1);
+		bresenham_drawline(getCenterPoint().getX()+x, getCenterPoint().getY()-y,getCenterPoint().getX(), getCenterPoint().getY(), allBlack);
+		bresenham_drawline(getCenterPoint().getX()-x, getCenterPoint().getY()-y,getCenterPoint().getX(), getCenterPoint().getY(), allBlack);
 		if (!half) {
-			drawPix(getCenterPoint().getX()+x, getCenterPoint().getY()+y, R, G, B, alpha);
-			drawPix(getCenterPoint().getX()-x, getCenterPoint().getY()+y, R, G, B, alpha);
+			bresenham_drawline(getCenterPoint().getX()+x, getCenterPoint().getY()+y,getCenterPoint().getX(), getCenterPoint().getY(), allBlack);
+			bresenham_drawline(getCenterPoint().getX()-x, getCenterPoint().getY()+y,getCenterPoint().getX(), getCenterPoint().getY(), allBlack);
 		}
 	}
 }

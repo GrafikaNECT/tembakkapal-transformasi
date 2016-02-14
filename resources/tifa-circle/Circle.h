@@ -1,6 +1,8 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #include <cmath>
+#include "bresenham.h"
+#include "line-pattern.h"
 #include "print.h"
 #include "Point.h"
 
