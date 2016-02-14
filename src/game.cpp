@@ -119,15 +119,36 @@ void game::updateLogic(){
 		if (bullets[i]->getLifetime()<=0){
 			deletequeue.push(i);
 		}
-		if (kapalterbang1.hitBullet(*bullets[i])){
+		if (!kapalterbang1.isExploding()
+			&& kapalterbang1.hitBullet(*bullets[i])){
 			kapalterbang1.explode();
+			person * p = new person();
+			p -> setX(kapalterbang1.getX());
+			p -> setY(kapalterbang1.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang1));
 		}
-		if (kapalterbang2.hitBullet(*bullets[i])){
+		if (!kapalterbang2.isExploding()
+			&& kapalterbang2.hitBullet(*bullets[i])){
+			person * p = new person();
+			p -> setX(kapalterbang2.getX());
+			p -> setY(kapalterbang2.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			kapalterbang2.explode();
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang2));
 		}	
-		if (kapalterbang3.hitBullet(*bullets[i])){
+		if (!kapalterbang3.isExploding()
+			&& kapalterbang3.hitBullet(*bullets[i])){
+			person * p = new person();
+			p -> setX(kapalterbang3.getX());
+			p -> setY(kapalterbang3.getY());
+			people.push_back(p);
+			movingObjects.push_back(p);
+			screenObjects.push_back(p);
 			kapalterbang3.explode();
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang3));
 		}
@@ -155,34 +176,84 @@ void game::drawScreen(){
 }
 
 void game::init(){
-
+	balingbaling * b;
 	initTermios();
 	initializePrinter();
-	kapalterbang newkapal(getXRes(),200,50,20);
+	kapalterbang newkapal(getXRes(),getYRes()/2,40,18);
 	kapalterbang1 = newkapal;
 	kapalterbang1.setMoveSpeedX(1);
 	kapalterbang1.setMoveSpeedY(1);
 	kapalterbang1.setScaleSpeed(0.01);
 	addScreenObject(&kapalterbang1);
 	movingObjects.push_back(&kapalterbang1);
-	kapalterbang newkapal2(getXRes(),200,50,20,"planecolor2.txt");
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang1.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang1.attachkanan(b,40,10);
+
+	kapalterbang newkapal2(getXRes(),getYRes()/2,40,18,"planecolor2.txt");
 	kapalterbang2 = newkapal2;
 	kapalterbang2.setMoveSpeedX(3);
 	kapalterbang2.setMoveSpeedY(1);
 	kapalterbang2.setScaleSpeed(0.01);
 	addScreenObject(&kapalterbang2);
 	movingObjects.push_back(&kapalterbang2);
-	kapalterbang newkapal3(getXRes(),200,50,20,"planecolor3.txt");
+
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang2.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang2.attachkanan(b,40,10);
+
+	kapalterbang newkapal3(getXRes(),getYRes()/2,40,18,"planecolor3.txt");
 	kapalterbang3 = newkapal3;
-	kapalterbang3.setMoveSpeedX(4);
-	kapalterbang3.setMoveSpeedY(2);
-	kapalterbang3.setScaleSpeed(0.01);
+	kapalterbang3.setMoveSpeedX(5);
+	kapalterbang3.setMoveSpeedY(3);
+	kapalterbang3.setScaleSpeed(0.05);
 	addScreenObject(&kapalterbang3);
 	movingObjects.push_back(&kapalterbang3);
+
+	//tempel baling-baling
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang3.attachkiri(b,10,10);
+	b = new balingbaling();
+	balingbalings.push_back(b);
+	movingObjects.push_back(b);
+	addScreenObject(b);
+	kapalterbang3.attachkanan(b,40,10);
+
+
 	kapallaut newkapallaut(50,getYRes()-80,270*PI/180);
 	kapallaut1 = newkapallaut;
 	addScreenObject(&kapallaut1);
 
+}
+
+void game::finalize(){
+	for (int i=0;i<balingbalings.size();i++){
+		delete balingbalings[i];
+	}
+	for (int i=0;i<people.size();i++){
+		delete people[i];
+	}
 }
 
 bool game::gameOver(){
@@ -206,7 +277,7 @@ void game::run(){
 		updateLogic();
 		drawScreen();
 
-		usleep(200);
+		usleep(1000);
 	}
 	usleep(500);
 	alphabet2.drawTextCentered("YOU WIN",300,5,255,0,0,255);
@@ -216,6 +287,7 @@ void game::run(){
 	finishPrinter();
 	resetTermios();
 	sleep(2);
+	finalize();
 }
 
 void game::addScreenObject(drawable * newScreenObject){

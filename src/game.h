@@ -9,6 +9,7 @@
 #include "kapalterbang.h"
 #include "kapallaut.h"
 #include "alphabet.h"
+#include "person.h"
 
 class game{
 	public:
@@ -21,6 +22,7 @@ class game{
 
 	void init();
 	void run();
+	void finalize();
 
 	void addScreenObject(drawable * newScreenObject);
 
@@ -44,6 +46,10 @@ class game{
 	kapalterbang kapalterbang3;
 
 	kapallaut kapallaut1;
+
+	std::vector<balingbaling*> balingbalings;
+
+	std::vector <person*> people;
 
 	//menggambar tulisan
 	alphabet alphabet2;

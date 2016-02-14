@@ -117,13 +117,15 @@ void pixelBoolMatrix::setWireframe(polygon p, bool menyala){
 	}
 	setLine(p[i],p[0],menyala);
 }
+
 #include<algorithm>
+
 void pixelBoolMatrix::setSolid(polygon p, bool menyala){
 //TODO ganti jadi yang dibagi jadi segitiga-segitiga
 	//===gambar wireframe===
 	setWireframe(p,menyala);
 
-
+	
 
 	//coba fill pakai point-in-polygon http://alienryderflex.com/polygon_fill/
 	//TODO tukar loop x dan y supaya cepat (mungkin, cobain)
@@ -133,7 +135,8 @@ void pixelBoolMatrix::setSolid(polygon p, bool menyala){
 		for (int i=0;i<p.size()-1;i++){
 			if (p[i].getY()!=p[i+1].getY())
 			if ((y<p[i].getY() && y >= p[i+1].getY()) ||
-				 (y>=p[i].getY() && y < p[i+1].getY())){				int x=(y-p[i].getY())*(p[i+1].getX()-p[i].getX())/(p[i+1].getY()-p[i].getY())+p[i].getX();
+				(y>=p[i].getY() && y < p[i+1].getY())){				
+					int x=(y-p[i].getY())*(p[i+1].getX()-p[i].getX())/(p[i+1].getY()-p[i].getY())+p[i].getX();
 				intersections.push_back(x);
 			}
 		}

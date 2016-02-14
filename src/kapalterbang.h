@@ -4,6 +4,8 @@
 #include "bullet.h"
 #include "drawable.h"
 #include "movingObject.h"
+#include "balingbaling.h"
+#include "polygon.h"
 
 class kapalterbang : public drawable, public movingObject{
 	public:
@@ -36,6 +38,12 @@ class kapalterbang : public drawable, public movingObject{
 		void setScaleSpeed(float v);
 		float getScaleSpeed();
 
+		void attachkiri(balingbaling * b, int relativex, int relativey);
+		void attachkanan(balingbaling * b, int relativex, int relativey);
+
+		void detachkiri();
+		void detachkanan();
+
 
 	protected:
 		int startX;
@@ -56,9 +64,23 @@ class kapalterbang : public drawable, public movingObject{
 		int deadlifetime=-1;
 		char* colorFileName;
 
+		bool balingbalingkiriAttached;
+		bool balingbalingkananAttached;
+		balingbaling * balingbalingkiri;
+		balingbaling * balingbalingkanan;
+
+		int balingbalingkiriX;
+		int balingbalingkiriY;
+		int balingbalingkananX;
+		int balingbalingkananY;
+
+		polygon body;
+		polygon window;
+
 	private:
 		//fungsi helper
 		bool lineIntersectsSquare(int x1, int y1, int x2, int y2, int xBL, int yBL, int xTR, int yTR);
+		void initShape();
 };
 
 #endif

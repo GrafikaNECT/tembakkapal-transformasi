@@ -4,6 +4,7 @@
 #include "print.h"
 #include "drawBitPicture-old.h"
 #include "polygon.h"
+#include <cmath>
 
 kapalterbang::kapalterbang(int _x,int _y){
 	startX=_x;
@@ -14,6 +15,7 @@ kapalterbang::kapalterbang(int _x,int _y){
 	height = 6*3;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName("planecolor1.txt");
 	draw();
 }
@@ -27,6 +29,7 @@ kapalterbang::kapalterbang(int _x,int _y,char* colorfile){
 	height = 6*3;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName(colorfile);
 	draw();
 }
@@ -40,6 +43,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height){
 	height=_height;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName("planecolor1.txt");
 }
 
@@ -52,6 +56,7 @@ kapalterbang::kapalterbang(int _x,int _y,int _width,int _height,char* colorfile)
 	height=_height;
 	exploding=false;
 	//dead=false;
+	initShape();
 	setColorFileName(colorfile);
 }
 
@@ -73,15 +78,12 @@ void kapalterbang::draw(){
 			deadlifetime--;
 		} else {
 			//drawPicture(x,y,3,200,"plane2.txt",colorFileName);
-			//ini kotak dummy
-			polygon p;
-			p.push_back(0,0);
-			p.push_back(width,0);
-			p.push_back(width,height);
-			p.push_back(0,height);
+			polygon bodydraw = body.hasilSkala(scale,scale);
+			polygon windraw = window.hasilSkala(scale,scale);
+			bodydraw.draw(x,y,255,255,255,255,false);
+			windraw.draw(x,y,0,0,0,255,false);
 
-			polygon pdraw = p.hasilSkala(scale,scale);
-			pdraw.draw(x,y,255,255,255,255,true);
+
 		}
 	}
 		//drawText("BOOM",4,getX(),getY(),2,255,0,0,255);
@@ -102,7 +104,20 @@ void kapalterbang::oneFrameMove(){
 			y=startY;
 			scale=0;
 		}
-
+		
+		//gerakin baling-baling
+		if (balingbalingkiriAttached){
+			balingbalingkiri->setX(getX()+balingbalingkiriX*scale);
+			balingbalingkiri->setY(getY()+balingbalingkiriY*scale);
+			balingbalingkiri->setScale(scale);
+			balingbalingkiri -> setRotateSpeed((getMoveSpeedX()+getMoveSpeedY()+getScaleSpeed())*5);
+		}
+		if (balingbalingkananAttached){
+			balingbalingkanan->setX(getX()+balingbalingkananX*scale);
+			balingbalingkanan->setY(getY()+balingbalingkananY*scale);
+			balingbalingkanan->setScale(scale);
+			balingbalingkanan -> setRotateSpeed((getMoveSpeedX()+getMoveSpeedY()+getScaleSpeed())*5);
+		}
 	}
 }
 
@@ -146,6 +161,8 @@ void kapalterbang::explode(){
 	if (!isDead()) {
 		setExploding(true);
 		deadlifetime=3;
+		detachkiri();
+		detachkanan();
 	}
 }
 
@@ -181,4 +198,61 @@ void kapalterbang::setScaleSpeed(float v){
 
 float kapalterbang::getScaleSpeed(){
 	return scaleSpeed;
+}
+
+void kapalterbang::attachkiri(balingbaling * b, int relativex, int relativey){
+	b->attach();
+	balingbalingkiri = b;
+	balingbalingkiriX=relativex;
+	balingbalingkiriY=relativey;
+	balingbalingkiriAttached = true;
+}
+void kapalterbang::attachkanan(balingbaling * b, int relativex, int relativey){
+	b->attach();
+	balingbalingkanan = b;
+	balingbalingkananX=relativex;
+	balingbalingkananY=relativey;
+	balingbalingkananAttached = true;
+}
+
+void kapalterbang::detachkiri(){
+	balingbalingkiri->detach(-getMoveSpeedX(),-getMoveSpeedY());
+	balingbalingkiriAttached = false;
+}
+void kapalterbang::detachkanan(){
+	balingbalingkanan->detach(-getMoveSpeedX(),-getMoveSpeedY());
+	balingbalingkananAttached = false;
+}
+
+void kapalterbang::initShape() {
+	body.push_back(19,0);
+	body.push_back(19,5);
+	body.push_back(18,6);
+	body.push_back(10,6);
+	body.push_back(17,7);
+	body.push_back(16,9);
+	body.push_back(15,10);
+	body.push_back(14,11);
+	body.push_back(0,11);
+	body.push_back(14,13);
+	body.push_back(15,14);
+	body.push_back(17,15);
+	body.push_back(19,16);
+	body.push_back(20,16);
+	body.push_back(22,15);
+	body.push_back(24,14);
+	body.push_back(25,13);
+	body.push_back(39,11);
+	body.push_back(25,11);
+	body.push_back(24,10);
+	body.push_back(23,9);
+	body.push_back(22,7);
+	body.push_back(29,6);
+	body.push_back(21,6);
+	body.push_back(20,5);
+	body.push_back(20,0);
+	window.push_back(18,9);
+	window.push_back(16,10);
+	window.push_back(23,10);
+	window.push_back(21,9);	
 }
