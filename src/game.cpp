@@ -277,7 +277,7 @@ void game::run(){
 		updateLogic();
 		drawScreen();
 
-		usleep(200);
+		usleep(1000);
 	}
 	usleep(500);
 	alphabet2.drawTextCentered("YOU WIN",300,5,255,0,0,255);

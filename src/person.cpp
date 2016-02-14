@@ -72,30 +72,7 @@ void person::move(){
 }
 
 void person::initShape() {
-	/*body.push_back(15,19);
-	body.push_back(16,19);
-	body.push_back(21,21);
-	body.push_back(31,21);
-	body.push_back(35,19);
-	body.push_back(36,19);
-	body.push_back(38,20);
-	body.push_back(37,21);
-	body.push_back(35,23);
-	body.push_back(32,24);
-	body.push_back(32,30);
-	body.push_back(34,32);
-	body.push_back(29,32);
-	body.push_back(29,30);
-	body.push_back(27,28);
-	body.push_back(26,28);
-	body.push_back(24,30);
-	body.push_back(24,32);
-	body.push_back(19,32);
-	body.push_back(21,30);
-	body.push_back(21,24);
-	body.push_back(16,21);
-	body.push_back(15,20);*/
-	
+
 	body.push_back(15,19);
 	body.push_back(16,19);
 	body.push_back(21,21);
@@ -131,15 +108,16 @@ void person::initShape() {
 	shirt.push_back(21,30);
 	shirt.push_back(32,30);
 	shirt.push_back(32,24);
-	shirt.push_back(36,23);
-	shirt.push_back(31,21);
-
+	shirt.push_back(34,23);
+	shirt.push_back(32,21);
+	
 	pants.push_back(21,30);
 	pants.push_back(20,35);
 	pants.push_back(25,35);
 	pants.push_back(26,33);
 	pants.push_back(27,33);
 	pants.push_back(28,35);
-	pants.push_back(33,35);
+	pants.push_back(3,23);
+	pants.push_back(3,35);
 	pants.push_back(32,30);
 }
