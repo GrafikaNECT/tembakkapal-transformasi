@@ -22,19 +22,12 @@ void person::oneFrameMove(){
 }
 #include <iostream>
 void person::draw(){
-	//TODO GANTI JADI BUKAN KOTAK
-	/*polygon p;
-	p.push_back(-30,-20);
-	p.push_back(30,-20);
-	p.push_back(30,80);
-	p.push_back(-30,80);
-*/
 	polygon bodyrotate = body.hasilRotasi(rotateDegree);
 	bodyrotate.draw(x,y,245,214,164,255,false);
 	polygon shirtrotate = shirt.hasilRotasi(rotateDegree);
 	shirtrotate.draw(x,y,255,0,0,255,false);
-	polygon pantsrotate = pants.hasilRotasi(rotateDegree);
-	pantsrotate.draw(x,y,0,0,255,255,false);
+	//polygon pantsrotate = pants.hasilRotasi(rotateDegree);
+	//pantsrotate.draw(x,y,0,0,255,255,false);
 }
 
 void person::gravity_accelerate(){
@@ -102,15 +95,16 @@ void person::initShape() {
 	body.push_back(16,21);
 	body.push_back(14,20);
 
-	shirt.push_back(21,21);
-	shirt.push_back(18,23);
-	shirt.push_back(21,24);
-	shirt.push_back(21,30);
-	shirt.push_back(32,30);
-	shirt.push_back(32,24);
-	shirt.push_back(34,23);
-	shirt.push_back(32,21);
+	shirt.push_back(20,20);
+	shirt.push_back(17,23);
+	shirt.push_back(20,24);
+	shirt.push_back(20,30);
+	shirt.push_back(33,30);
+	shirt.push_back(33,24);
+	shirt.push_back(35,23);
+	shirt.push_back(33,20);
 	
+
 	pants.push_back(21,30);
 	pants.push_back(20,35);
 	pants.push_back(25,35);
@@ -120,4 +114,5 @@ void person::initShape() {
 	pants.push_back(3,23);
 	pants.push_back(3,35);
 	pants.push_back(32,30);
+
 }

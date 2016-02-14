@@ -125,8 +125,8 @@ void pixelBoolMatrix::setSolid(polygon p, bool menyala){
 	//===gambar wireframe===
 	setWireframe(p,menyala);
 
-	
 
+	
 	//coba fill pakai point-in-polygon http://alienryderflex.com/polygon_fill/
 	//TODO tukar loop x dan y supaya cepat (mungkin, cobain)
 	for (int y=0;y<getHeight();y++){
