@@ -168,7 +168,7 @@ void game::updateLogic(){
 }
 
 void game::drawScreen(){
-	drawCanvas(0,0,0,255);
+	drawGameBackground();
 	for (int i=screenObjects.size()-1;i>=0;i--){
 		screenObjects[i]->draw();
 	}

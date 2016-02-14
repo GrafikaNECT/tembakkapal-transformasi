@@ -8,6 +8,7 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
+#include <time.h>
 
 //global variables
     int fbfd = 0;
@@ -117,7 +118,7 @@ void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char
     int x = 0, y = 0;       // Where we are going to put the pixel
 
     // Figure out where in memory to put the pixel
-    for (y = 0; y < vinfo.yres; y++)
+    for (y = 0; y < vinfo.yres; y++) {
         for (x = 0; x < vinfo.xres; x++) {
 
             location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
@@ -126,6 +127,82 @@ void drawCanvas(unsigned char R, unsigned char G, unsigned char B, unsigned char
 		setColor(R, G, B, alpha);
 
         }
+    }
+}
+
+void drawGameBackground() {
+    int x = 0, y = 0;       // Where we are going to put the pixel
+
+    // Figure out where in memory to put the pixel
+    int high = vinfo.yres;
+    int partition = vinfo.yres/11;
+    int skyBlue[9][4] = {
+        {47, 86, 233, 255},
+        {45, 100, 245, 255},
+        {47, 141, 255, 255},
+        {51, 171, 249, 255},
+        {52, 204, 255, 255},
+        {82, 219, 255, 255},
+        {23, 236, 236, 255},
+        {110, 255, 255, 255},
+        {168, 255, 255, 255}
+    };
+
+    int oceanBlue[7][4] = {
+        {5, 11, 58, 255},
+        {5, 11, 58, 255},
+        {5, 11, 58, 255},
+        {7, 18, 90, 255},
+        {7, 18, 90, 255},
+        {10, 22, 112, 255},
+        {13, 26, 129, 255},
+    };
+
+    srand (time(NULL));
+
+    int i, colorVariant;
+    // Sky Background
+    for (i=0; i<9; i++) {
+        int ymin_local = partition * i;
+        int ymax_local = partition * (i+1);
+        for (y = ymin_local; y < ymax_local; y++) {
+            for (x = 0; x < vinfo.xres; x++) {
+
+                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                           (y+vinfo.yoffset) * finfo.line_length;
+                colorVariant = rand()%3;
+                setColor(skyBlue[i][0]-colorVariant, skyBlue[i][1]-colorVariant, skyBlue[i][2]-colorVariant, skyBlue[i][3]);
+
+            }
+        }  
+    }
+
+    int ynow = partition * i;
+    int randColor;
+    for (y = ynow; y < vinfo.yres; y++) {
+        for (x = 0; x < vinfo.xres; x++) {
+
+            location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                       (y+vinfo.yoffset) * finfo.line_length;
+
+            if (x%3 == 0) randColor = rand()%7;
+            setColor(oceanBlue[randColor][0], oceanBlue[randColor][1], oceanBlue[randColor][2], oceanBlue[randColor][3]);
+        }
+    }
+    /* partition = (vinfo.yres - ynow)/12;
+    for (i=0; i<12; i++) {
+        int ymin_local = ynow + (partition * i);
+        int ymax_local = ynow + (partition * (i+1));
+        for (y = ymin_local; y < ymax_local; y++) {
+            for (x = 0; x < vinfo.xres; x++) {
+
+                location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                           (y+vinfo.yoffset) * finfo.line_length;
+
+            setColor(oceanBlue[randColor][0], oceanBlue[randColor][1], oceanBlue[randColor][2], oceanBlue[randColor][3]);
+            }
+        }
+    } */
 }
 
 void printToScreen(){
