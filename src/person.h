@@ -29,6 +29,7 @@ class person : public drawable, public movingObject {
 	polygon body;
 	polygon shirt;
 	polygon pants;
+	polygon hair;
 	polygon head;
 	polygon parachute1;
 	polygon parachute2;

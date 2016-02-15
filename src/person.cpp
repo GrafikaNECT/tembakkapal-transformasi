@@ -44,6 +44,8 @@ void person::draw(){
 	parachutelinerotate2.draw(x,y,205,92,92,255,false);
 	polygon headrotate = head.hasilRotasi(rotateDegree);
 	headrotate.draw(x,y,245,214,164,255,false);
+	polygon hairrotate = hair.hasilRotasi(rotateDegree);
+	hairrotate.draw(x,y,0,0,0,255,false);
 
 
 }
@@ -157,6 +159,7 @@ void person::initShape() {
 	parachuteline2.push_back(46,18);
 	parachuteline2.push_back(38,34);
 
+	head.push_back(24,27);
 	head.push_back(26,25);
 	head.push_back(28,27);
 	head.push_back(31,30);
@@ -164,7 +167,11 @@ void person::initShape() {
 	head.push_back(26,35);
 	head.push_back(24,32);
 	head.push_back(21,30);
-	head.push_back(24,27);
 
+	hair.push_back(24,27);
+	hair.push_back(25,27);
+	hair.push_back(26,25);
+	hair.push_back(27,27);
+	hair.push_back(28,27);
 
 }
