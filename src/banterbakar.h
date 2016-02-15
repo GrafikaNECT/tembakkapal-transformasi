@@ -1,8 +1,18 @@
 #ifndef banterbakar_h
 #define banterbakar_h
 
+#include <random>
+#include "drawable.h"
+#include "movingObject.h"
+
 class banterbakar: public drawable, public movingObject{
 	public:
+
+	banterbakar(){xSpeed = speedRandomGenerator(rd); ySpeed = speedRandomGenerator(rd);};
+
+	banterbakar(int _x, int _y, int baseXSpeed, int baseYSpeed);
+	
+
 
 	//bila di-attach, akan diset oleh pesawat
 	void setX(int x);
@@ -19,11 +29,6 @@ class banterbakar: public drawable, public movingObject{
 	//tambahan untuk gambar
 	static const int width = 40;
 	static const int height = 40;
-
-	//untuk update
-	float rotateSpeed;
-
-	bool attached;
 
 	float bounceelasticity=0.8;
 

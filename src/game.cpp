@@ -128,6 +128,13 @@ void game::updateLogic(){
 			people.push_back(p);
 			movingObjects.push_back(p);
 			screenObjects.push_back(p);
+			//ban terbakar
+			banterbakar * b = new banterbakar(kapalterbang1.getX(),
+								kapalterbang1.getY(),
+							kapalterbang1.getMoveSpeedX(),
+kapalterbang1.getMoveSpeedY());
+			movingObjects.push_back(b);
+			screenObjects.push_back(b);
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang1));
 		}
 		if (!kapalterbang2.isExploding()
@@ -139,6 +146,13 @@ void game::updateLogic(){
 			movingObjects.push_back(p);
 			screenObjects.push_back(p);
 			kapalterbang2.explode();
+			//ban terbakar
+			banterbakar * b = new banterbakar(kapalterbang2.getX(),
+								kapalterbang2.getY(),
+							kapalterbang2.getMoveSpeedX(),
+kapalterbang2.getMoveSpeedY());
+			movingObjects.push_back(b);
+			screenObjects.push_back(b);
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang2));
 		}	
 		if (!kapalterbang3.isExploding()
@@ -150,6 +164,13 @@ void game::updateLogic(){
 			movingObjects.push_back(p);
 			screenObjects.push_back(p);
 			kapalterbang3.explode();
+			//ban terbakar
+			banterbakar * b = new banterbakar(kapalterbang3.getX(),
+								kapalterbang3.getY(),
+							kapalterbang3.getMoveSpeedX(),
+kapalterbang3.getMoveSpeedY());
+			movingObjects.push_back(b);
+			screenObjects.push_back(b);
 			//screenObjects.erase(std::find(screenObjects.begin(),screenObjects.end(),&kapalterbang3));
 		}
 	}

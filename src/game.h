@@ -10,6 +10,7 @@
 #include "kapallaut.h"
 #include "alphabet.h"
 #include "person.h"
+#include "banterbakar.h"
 
 class game{
 	public:
@@ -48,6 +49,8 @@ class game{
 	kapallaut kapallaut1;
 
 	std::vector<balingbaling*> balingbalings;
+
+	std::vector<banterbakar*> banterbakars;
 
 	std::vector <person*> people;
 
