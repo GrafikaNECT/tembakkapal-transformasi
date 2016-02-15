@@ -109,7 +109,7 @@ void drawPicture(int _x, int _y, int size, int max_X, char* fileName,char* fileC
             switch(tmp[i]){
                 case '0':
                     Rfix = R[0]; Gfix = G[0]; Bfix = B[0];
-                    drawPixSquare(x, y, size, Rfix, Gfix, Bfix, alpha);
+                    drawPixSquare(x, y, size, Rfix, Gfix, Bfix, 0);
                     break;
                 case '1':
                     Rfix = R[1]; Gfix = G[1]; Bfix = B[1];
