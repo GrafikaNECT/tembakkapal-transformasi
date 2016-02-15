@@ -188,12 +188,13 @@ kapalterbang3.getMoveSpeedY());
 	}
 }
 
-void game::drawScreen(){
+void game::drawScreen(bool doPrintToScreen){
 	drawGameBackground();
 	for (int i=screenObjects.size()-1;i>=0;i--){
 		screenObjects[i]->draw();
 	}
-	printToScreen();
+	if (doPrintToScreen)
+		printToScreen();
 }
 
 void game::init(){
@@ -300,10 +301,15 @@ void game::run(){
 
 		usleep(1000);
 	}
-	usleep(500);
-	alphabet2.drawTextCentered("YOU WIN",300,5,255,0,0,255);
-	printToScreen();
-	usleep(500);
+	for (int i=0;i<50;i++){
+		updateControls();
+		updateLogic();
+		drawScreen(false);
+		usleep(500);
+		alphabet2.drawTextCentered("YOU WIN",300,5,255,0,0,255);
+		printToScreen();
+		usleep(500);
+	}
 
 	finishPrinter();
 	resetTermios();

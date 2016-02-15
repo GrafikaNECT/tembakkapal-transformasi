@@ -18,7 +18,7 @@ class game{
 
 	void updateControls();
 	void updateLogic();
-	void drawScreen();
+	void drawScreen(bool doPrintToScreen = true);
 	bool gameOver();
 
 	void init();
