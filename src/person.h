@@ -29,12 +29,14 @@ class person : public drawable, public movingObject {
 	polygon body;
 	polygon shirt;
 	polygon pants;
-	circle head;
+	polygon head;
 	polygon parachute1;
 	polygon parachute2;
 	polygon parachute3;
 	polygon parachute4;
 	polygon parachute5;
+	polygon parachuteline1;
+	polygon parachuteline2;
 //	line* parachute_lines;
 //	line belum ada. fathul udah bikin tapi point-nya agak beda gitu jadi harus disesuaikan
 
