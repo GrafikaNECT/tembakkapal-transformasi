@@ -181,7 +181,9 @@ void pixelBoolMatrix::bresenham_drawline_notvertical(int x1, int x2, int y1, int
 	for (x = x1; x<=x2; x++){
 		set(x,y,menyala);
 		error += deltaerr;
-		while (error >= 0.5){
+		while (error >= 0.5 &&
+			((y<=y1 && y>=y2)||
+			(y<=y2 && y>=y1))){
 			set(x,y,menyala);
 			y = y + sign(y2-y1);
 			error -= 1;
