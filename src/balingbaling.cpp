@@ -44,9 +44,17 @@ void balingbaling::draw(){
 	p1.push_back(-t3x, t3y);
 	p1.push_back(-t2x, t2y);
 	p1.push_back(-t1x, t1y);
-	polygon protate1 = p1.hasilRotasi(rotateDegree);
 
-	protate1.draw(x,y,255,201,14,255);
+	polygon protate1 = p1.hasilRotasi(rotateDegree);
+	protate1.draw(x,y,71,61,30,255);
+	polygon psmaller1 = protate1.hasilSkala(0.9, 0.9);
+	psmaller1.draw(x,y,128,100,63,255);
+	polygon psmaller2 = protate1.hasilSkala(0.7, 0.7);
+	psmaller2.draw(x,y,153,119,73,255);
+	polygon psmaller3 = protate1.hasilSkala(0.5, 0.5);
+	psmaller3.draw(x,y,177,140,93,255);
+
+
 
 
 	// Satu baling-baling kanan
@@ -60,9 +68,15 @@ void balingbaling::draw(){
 	p2.push_back(t3y, -t3x);
 	p2.push_back(t2y, -t2x);
 	p2.push_back(t1y, -t1x);
-	polygon protate2 = p2.hasilRotasi(rotateDegree);
 
-	protate2.draw(x,y,255,201,14,255);
+	polygon protate2 = p2.hasilRotasi(rotateDegree);
+	protate2.draw(x,y,71,61,30,255);
+	polygon psmaller12 = protate2.hasilSkala(0.9, 0.9);
+	psmaller12.draw(x,y,128,100,63,255);
+	polygon psmaller22 = protate2.hasilSkala(0.7, 0.7);
+	psmaller22.draw(x,y,153,119,73,255);
+	polygon psmaller32 = protate2.hasilSkala(0.5, 0.5);
+	psmaller32.draw(x,y,177,140,93,255);
 
 
 	// Satu baling-baling bawah
@@ -76,9 +90,15 @@ void balingbaling::draw(){
 	p3.push_back(-t3x, -t3y);
 	p3.push_back(-t2x, -t2y);
 	p3.push_back(-t1x, -t1y);
-	polygon protate3 = p3.hasilRotasi(rotateDegree);
 
-	protate3.draw(x,y,255,201,14,255);
+	polygon protate3 = p3.hasilRotasi(rotateDegree);
+	protate3.draw(x,y,71,61,30,255);
+	polygon psmaller13 = protate3.hasilSkala(0.9, 0.9);
+	psmaller13.draw(x,y,128,100,63,255);
+	polygon psmaller23 = protate3.hasilSkala(0.7, 0.7);
+	psmaller23.draw(x,y,153,119,73,255);
+	polygon psmaller33 = protate3.hasilSkala(0.5, 0.5);
+	psmaller33.draw(x,y,177,140,93,255);
 
 
 	// Satu baling-baling kiri
@@ -92,9 +112,15 @@ void balingbaling::draw(){
 	p4.push_back(-t3y, -t3x);
 	p4.push_back(-t2y, -t2x);
 	p4.push_back(-t1y, -t1x);
+	
 	polygon protate4 = p4.hasilRotasi(rotateDegree);
-
-	protate4.draw(x,y,255,201,14,255);
+	protate4.draw(x,y,71,61,30,255);
+	polygon psmaller14 = protate4.hasilSkala(0.9, 0.9);
+	psmaller14.draw(x,y,128,100,63,255);
+	polygon psmaller24 = protate4.hasilSkala(0.7, 0.7);
+	psmaller24.draw(x,y,153,119,73,255);
+	polygon psmaller34 = protate4.hasilSkala(0.5, 0.5);
+	psmaller34.draw(x,y,177,140,93,255);
 }
 void balingbaling::oneFrameMove(){
 	rotateDegree=(rotateDegree+rotateSpeed);
