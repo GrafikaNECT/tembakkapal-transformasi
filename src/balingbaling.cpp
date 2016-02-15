@@ -22,7 +22,7 @@ void balingbaling::draw(){
 	// p.push_back(-a,b);
 	// polygon protate = p.hasilRotasi(rotateDegree);
 
-	// protate.draw(x,y,255,255,0,255,true);
+	// protate.draw(x,y,255,201,14,255,true);
 
 	// Satu baling-baling atas
 	int t0x = 0; int t0y = 0;
@@ -46,7 +46,7 @@ void balingbaling::draw(){
 	p1.push_back(-t1x, t1y);
 	polygon protate1 = p1.hasilRotasi(rotateDegree);
 
-	protate1.draw(x,y,255,255,0,255);
+	protate1.draw(x,y,255,201,14,255);
 
 
 	// Satu baling-baling kanan
@@ -62,7 +62,7 @@ void balingbaling::draw(){
 	p2.push_back(t1y, -t1x);
 	polygon protate2 = p2.hasilRotasi(rotateDegree);
 
-	protate2.draw(x,y,255,255,0,255);
+	protate2.draw(x,y,255,201,14,255);
 
 
 	// Satu baling-baling bawah
@@ -78,7 +78,7 @@ void balingbaling::draw(){
 	p3.push_back(-t1x, -t1y);
 	polygon protate3 = p3.hasilRotasi(rotateDegree);
 
-	protate3.draw(x,y,255,255,0,255);
+	protate3.draw(x,y,255,201,14,255);
 
 
 	// Satu baling-baling kiri
@@ -94,7 +94,7 @@ void balingbaling::draw(){
 	p4.push_back(-t1y, -t1x);
 	polygon protate4 = p4.hasilRotasi(rotateDegree);
 
-	protate4.draw(x,y,255,255,0,255);
+	protate4.draw(x,y,255,201,14,255);
 }
 void balingbaling::oneFrameMove(){
 	rotateDegree=(rotateDegree+rotateSpeed);
