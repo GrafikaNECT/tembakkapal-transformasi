@@ -70,5 +70,5 @@ obj/balingbaling.o:  src/balingbaling.h src/balingbaling.cpp src/polygon.h src/m
 obj/banterbakar.o:  src/banterbakar.cpp src/banterbakar.h src/polygon.h src/print.h src/drawBitPicture-old.h src/movingObject.h src/drawable.h
 	g++ -c src/banterbakar.cpp -o obj/banterbakar.o -fpermissive -std=c++11 -w -g
 
-obj/person.o:  src/drawable.h src/movingObject.h src/polygon.h src/circle.h src/person.h src/print.h
+obj/person.o:  src/drawable.h src/movingObject.h src/polygon.h src/circle.h src/person.h src/print.h src/person.cpp
 	g++ -c src/person.cpp -o obj/person.o -fpermissive -std=c++11 -w -g
