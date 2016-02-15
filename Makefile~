@@ -13,8 +13,6 @@ bin/main: Makefile src/mgame.cpp src/game.cpp src/drawable.cpp src/kapalterbang.
 	cp src/ban.txt bin/ban.txt
 	cp src/orang.txt bin/orang.txt
 	cp src/parasut.txt bin/parasut.txt
-	cp src/ban-terbakar.txt bin/ban-terbakar.txt
-	cp src/ban-color.txt bin/ban-color.txt
 
 bin:
 	mkdir -p bin

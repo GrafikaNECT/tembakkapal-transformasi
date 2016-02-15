@@ -135,7 +135,10 @@ void drawPicture(int _x, int _y, int size, int max_X, char* fileName,char* fileC
                     Rfix = R[6]; Gfix = G[6]; Bfix = B[6];
                     drawPixSquare(x, y, size, Rfix, Gfix, Bfix, alpha);
                     break;
-                
+                case '7':
+                    Rfix = R[6]; Gfix = G[6]; Bfix = B[6];
+                    drawPixSquare(x, y, size, Rfix, Gfix, Bfix, alpha);
+                    break;
             }
             x+=size;
         }

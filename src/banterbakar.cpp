@@ -1,6 +1,7 @@
 #include "banterbakar.h"
 #include "polygon.h"
 #include "print.h"
+#include "drawBitPicture-old.h"
 
 #include <chrono>
 
@@ -17,16 +18,7 @@ banterbakar::banterbakar(int _x, int _y, int baseXSpeed, int baseYSpeed){
 
 void banterbakar::draw(){
 	//TODO GANTI YANG BENER
-	int a = width;
-	int b = height;
-
-	polygon p;
-	p.push_back(0,0);
-	p.push_back(a,0);
-	p.push_back(a,b);
-	p.push_back(0,b);
-
-	p.draw(x,y,0,0,0,255,true);
+	drawPicture(x,y,1,41,"ban-terbakar.txt","ban-color.txt");
 
 }
 void banterbakar::oneFrameMove(){
