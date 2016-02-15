@@ -136,14 +136,15 @@ void pixelBoolMatrix::setSolid(polygon p, bool menyala){
 			if (p[i].getY()!=p[i+1].getY())
 			if ((y<p[i].getY() && y >= p[i+1].getY()) ||
 				(y>=p[i].getY() && y < p[i+1].getY())){				
-					int x=(y-p[i].getY())*(p[i+1].getX()-p[i].getX())/(p[i+1].getY()-p[i].getY())+p[i].getX();
+					int x=(int)((p[i].getX()+((float)y-p[i].getY())/((float)p[i+1].getY()-p[i].getY())*(p[i+1].getX()-p[i].getX())));
 				intersections.push_back(x);
 			}
 		}
 		int i=p.size()-1;
 		if (p[i].getY()!=p[0].getY())
-		if ((y<p[i].getY() && y > p[0].getY()) ||
-			 (y>p[i].getY() && y < p[0].getY())){				int x=(y-p[i].getY())*(p[0].getY()-p[i].getY())*(p[0].getX()-p[i].getX())+p[i].getX();
+		if ((y<p[i].getY() && y >= p[0].getY()) ||
+			 (y>=p[i].getY() && y < p[0].getY())){
+			int x=(int)((p[i].getX()+((float)y-p[i].getY())/((float)p[0].getY()-p[i].getY())*(p[0].getX()-p[i].getX())));
 			intersections.push_back(x);
 		}
 
