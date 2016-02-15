@@ -75,3 +75,5 @@ void polygon::draw(int x, int y, int R, int G, int B, int A, bool wireframeOnly)
 
 	mat.draw(x+xmin,y+ymin,R,G,B,A);
 }
+
+

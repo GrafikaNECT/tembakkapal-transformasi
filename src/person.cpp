@@ -28,6 +28,17 @@ void person::draw(){
 	shirtrotate.draw(x,y,255,0,0,255,false);
 	polygon pantsrotate = pants.hasilRotasi(rotateDegree);
 	pantsrotate.draw(x,y,128,0,128,255,false);
+	polygon parachutePart1 = parachute1.hasilRotasi(rotateDegree);
+	parachutePart1.draw(x,y,229,20,60,255,false);
+	polygon parachutePart2 = parachute2.hasilRotasi(rotateDegree);
+	parachutePart2.draw(x,y,255,0,0,255,false);
+	polygon parachutePart3 = parachute3.hasilRotasi(rotateDegree);
+	parachutePart3.draw(x,y,255,99,71,255,false);
+	polygon parachutePart4 = parachute4.hasilRotasi(rotateDegree);
+	parachutePart4.draw(x,y,255,127,80,255,false);
+	polygon parachutePart5 = parachute5.hasilRotasi(rotateDegree);
+	parachutePart5.draw(x,y,205,92,92,255,false);
+
 }
 
 void person::gravity_accelerate(){
@@ -114,4 +125,23 @@ void person::initShape() {
 	pants.push_back(33,35);
 	pants.push_back(33,30);
 
+	parachute1.push_back(16,8);
+	parachute1.push_back(19,4);
+	parachute1.push_back(26,8);
+
+	parachute2.push_back(26,8);
+	parachute2.push_back(19,4);
+	parachute2.push_back(22,0);
+
+	parachute3.push_back(22,0);
+	parachute3.push_back(30,0);
+	parachute3.push_back(26,8);
+
+	parachute4.push_back(30,0);
+	parachute4.push_back(33,4);
+	parachute4.push_back(26,8);
+
+	parachute5.push_back(33,4);
+	parachute5.push_back(36,8);
+	parachute5.push_back(26,8);
 }
