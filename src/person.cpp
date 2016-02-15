@@ -38,6 +38,13 @@ void person::draw(){
 	parachutePart4.draw(x,y,255,127,80,255,false);
 	polygon parachutePart5 = parachute5.hasilRotasi(rotateDegree);
 	parachutePart5.draw(x,y,205,92,92,255,false);
+	polygon parachutelinerotate1 = parachuteline1.hasilRotasi(rotateDegree);
+	parachutelinerotate1.draw(x,y,205,92,92,255,false);
+	polygon parachutelinerotate2 = parachuteline2.hasilRotasi(rotateDegree);
+	parachutelinerotate2.draw(x,y,205,92,92,255,false);
+	polygon headrotate = head.hasilRotasi(rotateDegree);
+	headrotate.draw(x,y,245,214,164,255,false);
+
 
 }
 
@@ -77,71 +84,87 @@ void person::move(){
 
 void person::initShape() {
 
-	body.push_back(15,19);
-	body.push_back(16,19);
-	body.push_back(21,21);
-	body.push_back(31,21);
-	body.push_back(35,19);
-	body.push_back(36,19);
-	body.push_back(38,20);
-	body.push_back(37,21);
-	body.push_back(35,23);
-	body.push_back(32,24);
-	body.push_back(32,34);
-	body.push_back(34,36);
-	body.push_back(33,37);
-	body.push_back(30,37);
-	body.push_back(29,36);
-	body.push_back(28,34);
-	body.push_back(27,30);
-	body.push_back(26,30);
-	body.push_back(25,34);
-	body.push_back(24,36);
-	body.push_back(23,37);
-	body.push_back(20,37);
-	body.push_back(19,36);
-	body.push_back(21,34);
-	body.push_back(21,24);
-	body.push_back(18,23);
-	body.push_back(16,21);
-	body.push_back(14,20);
+	body.push_back(15,33);
+	body.push_back(16,33);
+	body.push_back(21,35);
+	body.push_back(31,35);
+	body.push_back(35,33);
+	body.push_back(36,33);
+	body.push_back(38,34);
+	body.push_back(37,35);
+	body.push_back(35,37);
+	body.push_back(32,38);
+	body.push_back(32,48);
+	body.push_back(34,50);
+	body.push_back(33,51);
+	body.push_back(30,51);
+	body.push_back(29,50);
+	body.push_back(28,48);
+	body.push_back(27,44);
+	body.push_back(26,44);
+	body.push_back(25,48);
+	body.push_back(24,50);
+	body.push_back(23,51);
+	body.push_back(20,51);
+	body.push_back(19,50);
+	body.push_back(21,48);
+	body.push_back(21,38);
+	body.push_back(18,37);
+	body.push_back(16,35);
+	body.push_back(14,34);
 
-	shirt.push_back(20,20);
-	shirt.push_back(17,23);
-	shirt.push_back(20,24);
-	shirt.push_back(20,30);
-	shirt.push_back(33,30);
-	shirt.push_back(33,24);
-	shirt.push_back(35,23);
-	shirt.push_back(33,20);
+	shirt.push_back(21,34);
+	shirt.push_back(18,37);
+	shirt.push_back(21,38);
+	shirt.push_back(21,44);
+	shirt.push_back(32,44);
+	shirt.push_back(32,38);
+	shirt.push_back(34,37);
+	shirt.push_back(32,34);
 	
+	pants.push_back(21,44);
+	pants.push_back(21,49);
+	pants.push_back(26,49);
+	pants.push_back(26,47);
+	pants.push_back(27,47);
+	pants.push_back(27,49);
+	pants.push_back(32,49);
+	pants.push_back(32,44);
 
-	pants.push_back(20,30);
-	pants.push_back(20,35);
-	pants.push_back(26,35);
-	pants.push_back(26,33);
-	pants.push_back(27,33);
-	pants.push_back(27,35);
-	pants.push_back(33,35);
-	pants.push_back(33,30);
+	parachute1.push_back(6,18);
+	parachute1.push_back(11,9);
+	parachute1.push_back(26,18);
 
-	parachute1.push_back(16,8);
-	parachute1.push_back(19,4);
-	parachute1.push_back(26,8);
+	parachute2.push_back(11,9);
+	parachute2.push_back(24,0);
+	parachute2.push_back(26,18);
 
-	parachute2.push_back(26,8);
-	parachute2.push_back(19,4);
-	parachute2.push_back(22,0);
+	parachute3.push_back(24,0);
+	parachute3.push_back(33,0);
+	parachute3.push_back(26,18);
 
-	parachute3.push_back(22,0);
-	parachute3.push_back(30,0);
-	parachute3.push_back(26,8);
+	parachute4.push_back(33,0);
+	parachute4.push_back(41,9);
+	parachute4.push_back(26,18);
 
-	parachute4.push_back(30,0);
-	parachute4.push_back(33,4);
-	parachute4.push_back(26,8);
+	parachute5.push_back(41,9);
+	parachute5.push_back(46,18);
+	parachute5.push_back(26,18);
 
-	parachute5.push_back(33,4);
-	parachute5.push_back(36,8);
-	parachute5.push_back(26,8);
+	parachuteline1.push_back(6,18);
+	parachuteline1.push_back(14,34);
+
+	parachuteline2.push_back(46,18);
+	parachuteline2.push_back(38,34);
+
+	head.push_back(26,25);
+	head.push_back(28,27);
+	head.push_back(31,30);
+	head.push_back(28,33);
+	head.push_back(26,35);
+	head.push_back(24,32);
+	head.push_back(21,30);
+	head.push_back(24,27);
+
+
 }
