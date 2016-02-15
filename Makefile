@@ -1,5 +1,5 @@
 bin/main: obj Makefile src/mgame.cpp obj/game.o obj/drawable.o obj/kapalterbang.o obj/kapallaut.o obj/bullet.o obj/line-pattern.o obj/bresenham.o obj/print.o obj/drawBitPicture-old.o obj/alphabet.o obj/pixelBoolMatrix.o obj/letter.o obj/polygon.o src/alphabet-2.txt bin obj/balingbaling.o obj/person.o obj/banterbakar.o  obj/point.o
-	g++ src/mgame.cpp obj/game.o obj/drawable.o obj/kapalterbang.o obj/kapallaut.o obj/bullet.o obj/line-pattern.o obj/bresenham.o obj/drawBitPicture-old.o obj/alphabet.o obj/pixelBoolMatrix.o obj/letter.o obj/polygon.o obj/balingbaling.o obj/person.o obj/banterbakar.o obj/print.o obj/point.o -fpermissive -std=c++11 -w -g
+	g++ src/mgame.cpp obj/game.o obj/drawable.o obj/kapalterbang.o obj/kapallaut.o obj/bullet.o obj/line-pattern.o obj/bresenham.o obj/drawBitPicture-old.o obj/alphabet.o obj/pixelBoolMatrix.o obj/letter.o obj/polygon.o obj/balingbaling.o obj/person.o obj/banterbakar.o obj/print.o obj/point.o -o bin/main -fpermissive -std=c++11 -w -g
 	cp src/cat_pixel.txt bin/cat_pixel.txt
 	cp src/ship.txt bin/ship.txt
 	cp src/plane2.txt bin/plane2.txt
