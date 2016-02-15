@@ -25,7 +25,7 @@ void banterbakar::oneFrameMove(){
 	x+=xSpeed;
 	y+=ySpeed;
 	ySpeed+=fallaccel;
-	if (y>getYRes() && ySpeed>0){
+	if (y>getYRes()-100 && ySpeed>0){
 		ySpeed=-ySpeed*bounceelasticity;
 	}
 }
