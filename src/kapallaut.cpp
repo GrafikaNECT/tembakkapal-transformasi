@@ -11,7 +11,7 @@ static std::vector<line_pattern> kapallaut::initShootStyles(){
 
 	unsigned char full = 255;
 	unsigned char empty = 0;
-	retval.push_back(makeLinePattern(&empty,&empty,&full,&full,1));
+	retval.push_back(makeLinePattern(&full,&empty,&empty,&full,1));
 
 	
 	unsigned char AR [] = {255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
