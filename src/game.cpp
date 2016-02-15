@@ -192,7 +192,7 @@ void game::init(){
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
 	addScreenObject(b);
-	kapalterbang1.attachkiri(b,10,10);
+	kapalterbang1.attachkiri(b,0,10);
 	b = new balingbaling();
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
@@ -213,7 +213,7 @@ void game::init(){
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
 	addScreenObject(b);
-	kapalterbang2.attachkiri(b,10,10);
+	kapalterbang2.attachkiri(b,0,10);
 	b = new balingbaling();
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
@@ -233,7 +233,7 @@ void game::init(){
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
 	addScreenObject(b);
-	kapalterbang3.attachkiri(b,10,10);
+	kapalterbang3.attachkiri(b,0,10);
 	b = new balingbaling();
 	balingbalings.push_back(b);
 	movingObjects.push_back(b);
